@@ -18,7 +18,7 @@ Technologies and Tools:
 5) Dependency Injection (optional) for better dependency management
 
 Project Steps:
-1. Project Creation
+~~1. Project Creation~~
 2. Project Configuration
 Add necessary NuGet packages:
 
