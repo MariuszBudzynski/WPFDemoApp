@@ -19,7 +19,8 @@ Technologies and Tools:
 
 Project Steps:
 ~~1. Project Creation~~
-2. Project Configuration
+
+1. Project Configuration
 Add necessary NuGet packages:
 
 Microsoft.EntityFrameworkCore
