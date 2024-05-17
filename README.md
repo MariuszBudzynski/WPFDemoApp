@@ -16,6 +16,9 @@ Technologies and Tools:
 3) XAML for UI creation
 4) Entity Framework Core for local data storage
 5) Dependency Injection (optional) for better dependency management
+6) Moq
+7) xUnit Tests
+8) Clean Architecture
 
 Project Steps:
 1. Project Creation - DONE
