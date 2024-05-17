@@ -18,9 +18,8 @@ Technologies and Tools:
 5) Dependency Injection (optional) for better dependency management
 
 Project Steps:
-~~1. Project Creation~~
-
-1. Project Configuration
+1. Project Creation - DONE
+2. Project Configuration
 Add necessary NuGet packages:
 
 Microsoft.EntityFrameworkCore
