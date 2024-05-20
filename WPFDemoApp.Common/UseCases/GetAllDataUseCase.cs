@@ -1,16 +1,28 @@
-﻿namespace WPFDemoApp.Common.UseCases
+﻿using NLog;
+
+namespace WPFDemoApp.Common.UseCases
 {
-    public class GetAllDataUseCase<TEntity> : IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted
+    public class GetAllDataUseCase<TEntity> : IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted , IEntityTextContent
 	{
 		private readonly IRepository<TEntity> _repository;
-		GetAllDataUseCase(Repository<TEntity> repository)
+		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+		public GetAllDataUseCase(Repository<TEntity> repository)
 		{
 			_repository = repository;
 		}
 
-		public async Task<ReadOnlyCollection<TEntity>> ExecuteAsync()
+		public async Task<IEnumerable<TEntity>> ExecuteAsync()
 		{
+			try
+			{
 				return await _repository.GetAllDataAsync();
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "An error occurred while processing data.");
+				throw;
+			}
 		}
 	}
 }

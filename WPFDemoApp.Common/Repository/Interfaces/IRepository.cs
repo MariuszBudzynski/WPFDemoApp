@@ -2,6 +2,6 @@
 {
     public interface IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
     {
-        Task<ReadOnlyCollection<TEntity>> GetAllDataAsync();
+        Task<IEnumerable<TEntity>> GetAllDataAsync();
     }
 }
