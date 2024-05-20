@@ -1,18 +1,22 @@
 ﻿namespace WPFDemoApp.Common.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{
 
-		private DbSet<TEntity> _entities;
+		private readonly DbSet<TEntity> _entities;
 
 		public Repository(DbContext context)
 		{
 			_entities = context.Set<TEntity>();
 		}
 
-		public async Task<IQueryable<TEntity>> GetAllDataAsync()
+		public async Task<ReadOnlyCollection<TEntity>> GetAllDataAsync()
 		{
-			return await Task.FromResult(_entities.AsQueryable());
+			List<TEntity> data = await _entities
+				.Where(x => x.HasBeenDeleted == false)
+				.ToListAsync();
+
+			return new ReadOnlyCollection<TEntity>(data);
 		}
 
 	}

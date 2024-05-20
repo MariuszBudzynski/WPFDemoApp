@@ -1,7 +1,7 @@
 ﻿namespace WPFDemoApp.Common.Repository.Interfaces
 {
-    public interface IRepository<TEntity> where TEntity : class
+    public interface IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
     {
-        Task<IQueryable<TEntity>> GetAllDataAsync();
+        Task<ReadOnlyCollection<TEntity>> GetAllDataAsync();
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WPFDemoApp.Entieties
 {
-	public class ToDoItem : IEntity
+	public class ToDoItem : IEntityId, IEntityHasBeenDeleted
 	{
         public int Id { get; set; }
 		public string TextContent { get; set; }
