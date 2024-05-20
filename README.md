@@ -34,4 +34,3 @@ Project Steps:
 5. Connect ViewModel to View - to be done
 6. User Interface - to be done
 7. ViewModel Commands and Logic - to be done
-8. Add XUnit Test - to be done

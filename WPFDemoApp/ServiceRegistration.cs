@@ -11,7 +11,7 @@
 			options => options.UseSqlite("Data Source=localdatabase.db"));
 
 			services.AddScoped<MainWindow>();
-			services.AddScoped<ToDoItems>();
+			services.AddScoped<ToDoItem>();
 			
 			// Add other services
 			return services.BuildServiceProvider();
