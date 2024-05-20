@@ -7,9 +7,11 @@
 			var services = new ServiceCollection();
 
 			// Register services here
-			services.AddScoped<MainWindow>();
 			services.AddDbContext<ApplicationDbContext>(
 			options => options.UseSqlite("Data Source=localdatabase.db"));
+
+			services.AddScoped<MainWindow>();
+			services.AddScoped<ToDoItems>();
 			
 			// Add other services
 			return services.BuildServiceProvider();
