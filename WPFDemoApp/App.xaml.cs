@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System.Windows;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

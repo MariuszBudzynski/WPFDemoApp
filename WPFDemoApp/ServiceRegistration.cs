@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {
@@ -10,8 +8,9 @@ namespace WPFDemoApp
 
 			// Register services here
 			services.AddScoped<MainWindow>();
-
-
+			services.AddDbContext<ApplicationDbContext>(
+			options => options.UseSqlite("Data Source=localdatabase.db"));
+			
 			// Add other services
 			return services.BuildServiceProvider();
 		}

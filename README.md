@@ -1,7 +1,7 @@
 # WPFDemoApp
 
 _Work in progress_
-_This description will be changed after all work is done_
+_This description will change as modifications are made_
 
 Project: To-Do List
 Functionality:
@@ -29,11 +29,9 @@ Project Steps:
    Views
    Services
    Data
-4. Data Model - to be done
-5. Database Contex - to be done
 
-6. View , ViewModel - to be done
-7. Connect ViewModel to View - to be done
-8. User Interface - to be done
-9. ViewModel Commands and Logic - to be done
-10. Add XUnit Test - to be done
+4. View , ViewModel - to be done
+5. Connect ViewModel to View - to be done
+6. User Interface - to be done
+7. ViewModel Commands and Logic - to be done
+8. Add XUnit Test - to be done
