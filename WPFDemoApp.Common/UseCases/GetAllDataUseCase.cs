@@ -2,7 +2,7 @@
 
 namespace WPFDemoApp.Common.UseCases
 {
-    public class GetAllDataUseCase<TEntity> : IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted , IEntityTextContent
+    public class GetAllDataUseCase<TEntity> : IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{
 		private readonly IRepository<TEntity> _repository;
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
