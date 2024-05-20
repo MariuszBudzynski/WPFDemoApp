@@ -13,20 +13,14 @@ Functionality:
 5. Filter tasks (all, completed, incomplete)
 
 Technologies and Tools:
-1) WPF (Windows Presentation Foundation)
-2) MVVM (Model-View-ViewModel) pattern
-3) XAML for UI creation
-4) Entity Framework Core for local data storage
-5) Dependency Injection (optional) for better dependency management
+
+1. WPF (Windows Presentation Foundation)
+2. MVVM (Model-View-ViewModel) pattern
+3. XAML for UI creation
+4. Entity Framework Core for local data storage
+5. Dependency Injection (optional) for better dependency management
 
 Project Steps:
-1. Project Creation
-2. Project Configuration
-   Add necessary NuGet packages:
-
-Microsoft.EntityFrameworkCore
-Microsoft.EntityFrameworkCore.Sqlite (for SQLite database) or SQL
-Microsoft.Extensions.DependencyInjection
 
 3. Project Structure
    Add folders to the project for better organization:
