@@ -12,7 +12,9 @@
 
 			services.AddScoped<MainWindow>();
 			services.AddScoped<ToDoItem>();
-			
+			services.AddScoped<IRepository<ToDoItem>, Repository<ToDoItem>>();
+			services.AddScoped<IGetAllDataUseCase<ToDoItem>, GetAllDataUseCase<ToDoItem>>();
+
 			// Add other services
 			return services.BuildServiceProvider();
 		}

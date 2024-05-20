@@ -6,3 +6,7 @@ global using WPFDemoApp.Entieties;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Windows;
 global using WPFDemoApp.Context;
+global using WPFDemoApp.Common.Repository;
+global using WPFDemoApp.Common.Repository.Interfaces;
+global using WPFDemoApp.Common.UseCases;
+global using WPFDemoApp.Common.UseCases.Interfaces;
