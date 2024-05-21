@@ -5,9 +5,9 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoApp", "WPFDemoApp\WPFDemoApp.csproj", "{AE96683D-AD7B-489C-81AA-9E1AFBB61A04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoApp.Common", "WPFDemoApp.Common\WPFDemoApp.Common.csproj", "{4AD0B134-A488-4FD2-8117-23CBAEA8B2F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoApp.Common", "WPFDemoApp.Common\WPFDemoApp.Common.csproj", "{4AD0B134-A488-4FD2-8117-23CBAEA8B2F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoApp.Tests", "WPFDemoApp.Tests\WPFDemoApp.Tests.csproj", "{D20E2A6F-BDEC-43BD-AAD9-54AF80A4AC09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoApp.Tests", "WPFDemoApp.Tests\WPFDemoApp.Tests.csproj", "{D20E2A6F-BDEC-43BD-AAD9-54AF80A4AC09}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

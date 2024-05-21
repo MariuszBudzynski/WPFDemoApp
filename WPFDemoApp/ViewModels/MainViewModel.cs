@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using WPFDemoApp.UseCases.Interfaces;
 
 namespace WPFDemoApp.ViewModels
 {

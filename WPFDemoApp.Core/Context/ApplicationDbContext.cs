@@ -1,13 +1,16 @@
-﻿namespace WPFDemoApp.Common.Context
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
+namespace WPFDemoApp.Core.Context
 {
 	public class ApplicationDbContext : DbContext
 	{
 		public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-		: base(options)
+			: base(options)
 		{
 		}
-		public ApplicationDbContext() { }
 
+		public DbSet<ToDoItem> ToDoItems { get; set; }
 	}
 
 	public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>

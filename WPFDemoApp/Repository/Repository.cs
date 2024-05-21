@@ -1,4 +1,4 @@
-﻿namespace WPFDemoApp.Common.Repository
+﻿namespace WPFDemoApp.Repository
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{
@@ -8,7 +8,7 @@
 
 		public Repository(ApplicationDbContext context)
 		{
-			_entities = context.Set<TEntity>();
+			//_entities = context.Set<TEntity>();
 		}
 
 		public async Task<IEnumerable<TEntity>> GetAllDataAsync()
