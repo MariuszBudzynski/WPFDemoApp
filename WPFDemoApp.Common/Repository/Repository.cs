@@ -1,6 +1,4 @@
-﻿using NLog;
-
-namespace WPFDemoApp.Common.Repository
+﻿namespace WPFDemoApp.Common.Repository
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{

@@ -1,4 +1,6 @@
-﻿namespace WPFDemoApp
+﻿using WPFDemoApp.ViewModels;
+
+namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {
@@ -14,6 +16,7 @@
 			services.AddScoped<ToDoItem>();
 			services.AddScoped<IRepository<ToDoItem>, Repository<ToDoItem>>();
 			services.AddScoped<IGetAllDataUseCase<ToDoItem>, GetAllDataUseCase<ToDoItem>>();
+			services.AddScoped<MainViewModel<ToDoItem>>();
 
 			// Add other services
 			return services.BuildServiceProvider();

@@ -1,6 +1,4 @@
-﻿using NLog;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
