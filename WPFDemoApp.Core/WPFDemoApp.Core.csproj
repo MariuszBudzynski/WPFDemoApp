@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WPFDemoApp.Common\WPFDemoApp.Common.csproj" />
-    <ProjectReference Include="..\WPFDemoApp\WPFDemoApp.csproj" />
   </ItemGroup>
 
 </Project>

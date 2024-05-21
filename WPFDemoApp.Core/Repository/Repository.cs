@@ -1,4 +1,4 @@
-﻿namespace WPFDemoApp.Repository
+﻿namespace WPFDemoApp.Core.Repository
 {
 	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{

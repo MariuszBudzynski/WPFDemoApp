@@ -1,7 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using WPFDemoApp.UseCases.Interfaces;
-
-namespace WPFDemoApp.ViewModels
+﻿namespace WPFDemoApp.ViewModels
 {
 	// MainViewModel class implementing INotifyPropertyChanged to notify the UI about property changes
 	public class MainViewModel<TEntity> : INotifyPropertyChanged where TEntity : class, IEntityId, IEntityHasBeenDeleted, IEntityTextContent

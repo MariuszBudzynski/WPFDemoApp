@@ -1,4 +1,4 @@
-﻿namespace WPFDemoApp.UseCases.Interfaces
+﻿namespace WPFDemoApp.Core.UseCases.Interfaces
 {
 	public interface IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{

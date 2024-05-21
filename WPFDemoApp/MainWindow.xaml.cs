@@ -1,4 +1,6 @@
-﻿namespace WPFDemoApp
+﻿using WPFDemoApp.Core.Entieties;
+
+namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml

@@ -1,0 +1,11 @@
+﻿global using NLog;
+global using WPFDemoApp.Common.Entieties.Interfaces;
+global using WPFDemoApp.Core.Repository.Interfaces;
+global using WPFDemoApp.Core.UseCases.Interfaces;
+global using Microsoft.EntityFrameworkCore;
+global using System.Data.Common;
+global using WPFDemoApp.Core.Context;
+global using Microsoft.EntityFrameworkCore.Infrastructure;
+global using Microsoft.EntityFrameworkCore.Migrations;
+global using Microsoft.EntityFrameworkCore.Design;
+global using WPFDemoApp.Core.Entieties;

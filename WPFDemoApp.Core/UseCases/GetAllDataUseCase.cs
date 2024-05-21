@@ -1,4 +1,4 @@
-﻿namespace WPFDemoApp.UseCases
+﻿namespace WPFDemoApp.Core.UseCases
 {
 	public class GetAllDataUseCase<TEntity> : IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{
