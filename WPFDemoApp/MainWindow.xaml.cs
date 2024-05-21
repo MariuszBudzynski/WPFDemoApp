@@ -5,12 +5,14 @@
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private IServiceProvider _serviceProvider;
+		private readonly MainViewModel<ToDoItem> _viewModel;
 
-		public MainWindow()
+		private IServiceProvider _serviceProvider;
+		public MainWindow(MainViewModel<ToDoItem> viewModel)
 		{
-			//InitializeComponent();
-			
+			InitializeComponent();
+			//_viewModel = viewModel;
+			//DataContext = _viewModel;
 		}
 	}
 }

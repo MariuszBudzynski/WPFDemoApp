@@ -5,7 +5,7 @@
 		private readonly IRepository<TEntity> _repository;
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-		public GetAllDataUseCase(Repository<TEntity> repository)
+		public GetAllDataUseCase(IRepository<TEntity> repository)
 		{
 			_repository = repository;
 		}

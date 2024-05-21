@@ -1,50 +1,58 @@
-﻿namespace WPFDemoApp.ViewModels
+﻿using System.Collections.ObjectModel;
+
+namespace WPFDemoApp.ViewModels
 {
 	// MainViewModel class implementing INotifyPropertyChanged to notify the UI about property changes
-	public class MainViewModel<TEntity> : INotifyPropertyChanged where TEntity : class, IEntityId, IEntityHasBeenDeleted,IEntityTextContent
+	public class MainViewModel<TEntity> : INotifyPropertyChanged where TEntity : class, IEntityId, IEntityHasBeenDeleted, IEntityTextContent
 	{
-		
+		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
 		private readonly IGetAllDataUseCase<TEntity> _getAllDataUseCase;
 
-		// Private field to store the collection of entities
-		private ObservableCollection<TEntity> _entities;
+		private ObservableCollection<string> _textContentList;
 
-		// Public property to expose the collection of entities to the UI
-		// The set accessor updates the _entities field and raises the OnPropertyChanged method to notify the UI.
-		public ObservableCollection<TEntity> Entities
+		public ObservableCollection<string> TextContentList
 		{
-			get => _entities;
+			get => _textContentList;
 			set
 			{
-				_entities = value;
+				_textContentList = value;
 				OnPropertyChanged();
 			}
 		}
 
-		// Command property to load data when invoked
-		public ICommand LoadDataCommand { get; }
+		public event PropertyChangedEventHandler PropertyChanged;
 
 		public MainViewModel(IGetAllDataUseCase<TEntity> getAllDataUseCase)
 		{
 			_getAllDataUseCase = getAllDataUseCase;
-			LoadDataCommand = new RelayCommand(async _ => await LoadDataAsync());
+			 LoadDataAsync(); // Automatic data loading when creating a ViewModel
+		}
+
+		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 
 		// Asynchronous method to load data using the use case and update the Entities property
 		private async Task LoadDataAsync()
 		{
-			var data = await _getAllDataUseCase.ExecuteAsync();
-			Entities = new ObservableCollection<TEntity>(data);
-		}
+			try
+			{
+				var data = await _getAllDataUseCase.ExecuteAsync();
+				var textContentList = new ObservableCollection<string>();
 
-		// Event to notify the UI about property changes
-		public event PropertyChangedEventHandler PropertyChanged;
+				foreach (var item in data)
+				{
+					textContentList.Add(item.TextContent);
+				}
 
-		// Method to raise the PropertyChanged event, notifying the UI about property changes
-		// The [CallerMemberName] attribute allows the caller's name to be used as the argument if no explicit argument is provided.
-		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-		{
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+				TextContentList = textContentList;
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "An error occurred while loading data.");
+			}
 		}
 	}
 }

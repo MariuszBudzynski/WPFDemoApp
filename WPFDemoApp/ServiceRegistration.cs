@@ -1,6 +1,4 @@
-﻿using WPFDemoApp.ViewModels;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {

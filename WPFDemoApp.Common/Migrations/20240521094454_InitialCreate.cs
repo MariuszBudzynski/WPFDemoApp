@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace WPFDemoApp.Migrations
+namespace WPFDemoApp.Common.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

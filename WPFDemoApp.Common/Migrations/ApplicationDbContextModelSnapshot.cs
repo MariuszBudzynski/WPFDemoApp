@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WPFDemoApp.Context;
+using WPFDemoApp.Common.Context;
 
 #nullable disable
 
-namespace WPFDemoApp.Migrations
+namespace WPFDemoApp.Common.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

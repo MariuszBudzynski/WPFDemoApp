@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WPFDemoApp.Context;
+using WPFDemoApp.Common.Context;
 
 #nullable disable
 
-namespace WPFDemoApp.Migrations
+namespace WPFDemoApp.Common.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520093914_InitialCreate")]
+    [Migration("20240521094454_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

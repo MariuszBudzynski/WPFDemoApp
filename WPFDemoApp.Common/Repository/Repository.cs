@@ -1,12 +1,12 @@
 ﻿namespace WPFDemoApp.Common.Repository
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
+	public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
 	{
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
 		private readonly DbSet<TEntity> _entities;
 
-		public Repository(DbContext context)
+		public Repository(ApplicationDbContext context)
 		{
 			_entities = context.Set<TEntity>();
 		}
