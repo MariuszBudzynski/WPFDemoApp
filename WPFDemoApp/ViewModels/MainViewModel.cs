@@ -1,11 +1,11 @@
 ﻿namespace WPFDemoApp.ViewModels
 {
 	// MainViewModel class implementing INotifyPropertyChanged to notify the UI about property changes
-	public class MainViewModel<TEntity> : INotifyPropertyChanged where TEntity : class, IEntityId, IEntityHasBeenDeleted, IEntityTextContent
+	public class MainViewModel : INotifyPropertyChanged
 	{
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-		private readonly IGetAllDataUseCase<TEntity> _getAllDataUseCase;
+		private readonly IGetAllDataUseCase _getAllDataUseCase;
 
 		private ObservableCollection<string> _textContentList;
 
@@ -21,7 +21,7 @@
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public MainViewModel(IGetAllDataUseCase<TEntity> getAllDataUseCase)
+		public MainViewModel(IGetAllDataUseCase getAllDataUseCase)
 		{
 			_getAllDataUseCase = getAllDataUseCase;
 			 LoadDataAsync(); // Automatic data loading when creating a ViewModel

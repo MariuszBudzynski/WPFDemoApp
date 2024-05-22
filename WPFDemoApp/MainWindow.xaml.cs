@@ -7,14 +7,14 @@ namespace WPFDemoApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private readonly MainViewModel<ToDoItem> _viewModel;
+		private readonly MainViewModel _viewModel;
 
 		private IServiceProvider _serviceProvider;
-		public MainWindow(MainViewModel<ToDoItem> viewModel)
+		public MainWindow(MainViewModel viewModel)
 		{
 			InitializeComponent();
-			//_viewModel = viewModel;
-			//DataContext = _viewModel;
+			_viewModel = viewModel;
+			DataContext = _viewModel;
 		}
 	}
 }

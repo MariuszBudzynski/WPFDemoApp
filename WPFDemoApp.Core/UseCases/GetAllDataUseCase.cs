@@ -1,16 +1,16 @@
 ﻿namespace WPFDemoApp.Core.UseCases
 {
-	public class GetAllDataUseCase<TEntity> : IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted
+	public class GetAllDataUseCase : IGetAllDataUseCase
 	{
-		private readonly IRepository<TEntity> _repository;
+		private readonly IRepository _repository;
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
-		public GetAllDataUseCase(IRepository<TEntity> repository)
+		public GetAllDataUseCase(IRepository repository)
 		{
 			_repository = repository;
 		}
 
-		public async Task<IEnumerable<TEntity>> ExecuteAsync()
+		public async Task<IEnumerable<ToDoItem>> ExecuteAsync()
 		{
 			try
 			{
@@ -22,5 +22,6 @@
 				throw;
 			}
 		}
+
 	}
 }

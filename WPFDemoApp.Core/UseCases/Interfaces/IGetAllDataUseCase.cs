@@ -1,7 +1,7 @@
 ﻿namespace WPFDemoApp.Core.UseCases.Interfaces
 {
-	public interface IGetAllDataUseCase<TEntity> where TEntity : class, IEntityHasBeenDeleted
+	public interface IGetAllDataUseCase
 	{
-		Task<IEnumerable<TEntity>> ExecuteAsync();
+		Task<IEnumerable<ToDoItem>> ExecuteAsync();
 	}
 }

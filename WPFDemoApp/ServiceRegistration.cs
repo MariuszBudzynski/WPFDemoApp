@@ -1,20 +1,20 @@
-﻿namespace WPFDemoApp
+﻿using Microsoft.Extensions.Configuration;
+
+namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {
-		public static IServiceProvider ConfigureServices()
+		public static IServiceProvider ConfigureServices(IConfiguration configuration)
 		{
 			var services = new ServiceCollection();
 
-			// Register services here
-			services.AddDbContext<ApplicationDbContext>(
-			options => options.UseSqlite("Data Source=localdatabase.db"));
+			services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(configuration.GetConnectionString("ToDoItems")));
 
 			services.AddScoped<MainWindow>();
 			services.AddScoped<ToDoItem>();
-			services.AddScoped<IRepository<ToDoItem>, Repository<ToDoItem>>();
-			services.AddScoped<IGetAllDataUseCase<ToDoItem>, GetAllDataUseCase<ToDoItem>>();
-			services.AddScoped<MainViewModel<ToDoItem>>();
+			services.AddScoped<IRepository, Repository>();
+			services.AddScoped<IGetAllDataUseCase, GetAllDataUseCase>();
+			services.AddScoped<MainViewModel>();
 
 			// Add other services
 			return services.BuildServiceProvider();

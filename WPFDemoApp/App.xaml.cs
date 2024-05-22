@@ -1,4 +1,7 @@
-﻿namespace WPFDemoApp
+﻿using Microsoft.Extensions.Configuration;
+using System.IO;
+
+namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for App.xaml
@@ -7,9 +10,19 @@
 	{
 		private IServiceProvider _serviceProvider;
 		private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+		public IConfiguration Configuration { get; private set; }
 		App()
 		{
-			_serviceProvider = ServiceRegistration.ConfigureServices();
+
+
+			var builder = new ConfigurationBuilder()
+			.SetBasePath(Directory.GetCurrentDirectory())
+			.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+
+			Configuration = builder.Build();
+
+			_serviceProvider = ServiceRegistration.ConfigureServices(Configuration);
+
 
 		}
 
@@ -18,6 +31,9 @@
 			base.OnStartup(e);
 
 			var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+
+
+
 			mainWindow.Show();
 		}
 	}

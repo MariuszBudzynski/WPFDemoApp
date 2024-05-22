@@ -1,7 +1,7 @@
 ﻿namespace WPFDemoApp.Core.Repository.Interfaces
 {
-	public interface IRepository<TEntity> where TEntity : class, IEntityHasBeenDeleted
+	public interface IRepository
 	{
-		Task<IEnumerable<TEntity>> GetAllDataAsync();
+		Task<IEnumerable<ToDoItem>> GetAllDataAsync();
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace WPFDemoApp.Core.Context
+﻿using Microsoft.Extensions.Configuration;
+
+namespace WPFDemoApp.Core.Context
 {
 	public class ApplicationDbContext : DbContext
 	{
@@ -12,11 +14,18 @@
 
 	public class ApplicationDbContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>
 	{
+		//this is needed due to the WPF project
 		public ApplicationDbContext CreateDbContext(string[] args)
 		{
-			var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-			optionsBuilder.UseSqlite("Data Source=localdatabase.db");
+			var _configuration = new ConfigurationBuilder()
+				.SetBasePath(Directory.GetCurrentDirectory())
+				.AddJsonFile("appsettings.json")
+				.Build();
 
+			var connectionString = _configuration.GetConnectionString("ToDoItems");
+
+			var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+			optionsBuilder.UseSqlServer(connectionString);
 			return new ApplicationDbContext(optionsBuilder.Options);
 		}
 	}
