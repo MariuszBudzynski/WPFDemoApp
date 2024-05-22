@@ -6,17 +6,16 @@
 
 		private readonly ApplicationDbContext _context;
 	
-
 		public Repository(ApplicationDbContext context)
 		{
 			_context = context;
 		}
 
-		public async Task<IEnumerable<ToDoItem>> GetAllDataAsync()
+		public async Task<IEnumerable<TEntity>> GetAllDataAsync<TEntity>() where TEntity : class,IEntityHasBeenDeleted
 		{
 			try
 			{
-				IEnumerable<ToDoItem> data = await _context.ToDoItems
+				IEnumerable<TEntity> data = await _context.Set<TEntity>()
 					.Where(x => x.HasBeenDeleted == false)
 					.ToListAsync();
 

@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {

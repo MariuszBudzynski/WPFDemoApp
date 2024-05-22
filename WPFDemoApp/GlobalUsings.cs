@@ -1,5 +1,4 @@
-﻿global using WPFDemoApp.Common.Entieties.Interfaces;
-global using Microsoft.EntityFrameworkCore;
+﻿global using Microsoft.EntityFrameworkCore;
 global using Microsoft.Extensions.DependencyInjection;
 global using System.Windows;
 global using System.ComponentModel;
@@ -13,3 +12,7 @@ global using WPFDemoApp.Core.Entieties;
 global using WPFDemoApp.Core.Repository;
 global using WPFDemoApp.Core.Repository.Interfaces;
 global using WPFDemoApp.Core.UseCases;
+global using WPFDemoApp.DTOS;
+global using WPFDemoApp.Helpers;
+global using Microsoft.Extensions.Configuration;
+global using System.IO;

@@ -1,6 +1,4 @@
-﻿using WPFDemoApp.Core.Entieties;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -9,7 +7,6 @@ namespace WPFDemoApp
 	{
 		private readonly MainViewModel _viewModel;
 
-		private IServiceProvider _serviceProvider;
 		public MainWindow(MainViewModel viewModel)
 		{
 			InitializeComponent();

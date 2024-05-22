@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoApp.Common", "WPFDem
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoApp.Tests", "WPFDemoApp.Tests\WPFDemoApp.Tests.csproj", "{D20E2A6F-BDEC-43BD-AAD9-54AF80A4AC09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFDemoApp.Core", "WPFDemoApp.Core\WPFDemoApp.Core.csproj", "{29B9FF7E-D261-4CE2-A5E2-283C2097F86C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFDemoApp.Core", "WPFDemoApp.Core\WPFDemoApp.Core.csproj", "{29B9FF7E-D261-4CE2-A5E2-283C2097F86C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

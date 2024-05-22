@@ -1,11 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-#nullable disable
+﻿#nullable disable
 
 namespace WPFDemoApp.Core.Migrations
 {
-    /// <inheritdoc />
-    public partial class InitialCreate : Migration
+	/// <inheritdoc />
+	public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

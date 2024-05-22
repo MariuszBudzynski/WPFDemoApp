@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-
-namespace WPFDemoApp.Core.Context
+﻿namespace WPFDemoApp.Core.Context
 {
 	public class ApplicationDbContext : DbContext
 	{

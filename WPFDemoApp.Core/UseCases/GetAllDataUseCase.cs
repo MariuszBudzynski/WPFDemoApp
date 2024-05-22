@@ -10,11 +10,11 @@
 			_repository = repository;
 		}
 
-		public async Task<IEnumerable<ToDoItem>> ExecuteAsync()
+		public async Task<IEnumerable<TEntity>> ExecuteAsync<TEntity>() where TEntity : class, IEntityHasBeenDeleted
 		{
 			try
 			{
-				return await _repository.GetAllDataAsync();
+				return await _repository.GetAllDataAsync<TEntity>();
 			}
 			catch (Exception ex)
 			{

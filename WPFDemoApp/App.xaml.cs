@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.IO;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for App.xaml

@@ -37,7 +37,8 @@
 		{
 			try
 			{
-				var data = await _getAllDataUseCase.ExecuteAsync();
+				var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
+				var dtoData = data.ToDto();
 				var textContentList = new ObservableCollection<string>();
 
 				foreach (var item in data)
