@@ -5,5 +5,6 @@
 		Task<IEnumerable<TEntity>> GetAllDataAsync<TEntity>() where TEntity : class, IEntityHasBeenDeleted;
 		Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent;
 		Task SoftDeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent;
+		Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent;
 	}
 }

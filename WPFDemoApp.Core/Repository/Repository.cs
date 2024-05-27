@@ -31,12 +31,34 @@
 		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent
 		{
 
-			var existingdata =	await _context.Set<TEntity>()
-								.Where(x => x.HasBeenDeleted == false && x.TextContent == data.TextContent)
-								.ToListAsync();
 
-			if (existingdata.Count >= 1) return;
-			
+			var existingdata = await _context.Set<TEntity>()
+							 .SingleOrDefaultAsync(x => x.HasBeenDeleted == false && x.TextContent == data.TextContent);
+
+			var deletedData = await _context.Set<TEntity>()
+							 .SingleOrDefaultAsync(x => x.HasBeenDeleted == true && x.TextContent == data.TextContent);
+
+
+			if (existingdata != null)
+			{
+				return;
+			}
+			 if (deletedData!= null)
+			{
+					try
+					{
+						deletedData.HasBeenDeleted = false;
+						_context.Update(deletedData);
+						await _context.SaveChangesAsync();
+					}
+					catch (DbException ex)
+					{
+						_logger.Error(ex, "An error occurred while saving data to the database.");
+						throw;
+					}
+					return;
+			}
+
 
 			try
 			{
@@ -58,12 +80,30 @@
 			try
 			{
 				itemExists.HasBeenDeleted = true;
-				_context.Update(itemExists);
+				await UpdateItem(itemExists);
+
+			}
+			catch (DbException ex)
+			{
+				_logger.Error(ex, "An error occurred while soft delete was in progress.");
+				throw;
+			}
+		}
+
+		//Prepare the UseCase Chain later
+		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent
+		{
+			
+			if (data == null) return;
+ 
+            try
+			{
+				_context.Update(data);
 				await _context.SaveChangesAsync();
 			}
 			catch (DbException ex)
 			{
-				_logger.Error(ex, "An error occurred while soft delete.");
+				_logger.Error(ex, "An error occurred while updating database.");
 				throw;
 			}
 		}
