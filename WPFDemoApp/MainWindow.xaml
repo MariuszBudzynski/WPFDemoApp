@@ -63,7 +63,8 @@
                                                 </Grid.ColumnDefinitions>
                                                 <!-- Buttons -->
                                                 <Button x:Name="Delete_Button" Foreground="Black" Background="LightGray" Grid.Column="2"
-                                                        Content="DELETE" Margin="10" Click="DeleteButton_Click" Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>
+                                                        Content="DELETE" Margin="10" Click="DeleteButton_Click"
+                                                        Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>
                                             </Grid>
                                         </Grid>
                                     </DataTemplate>

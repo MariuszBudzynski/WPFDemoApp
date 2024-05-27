@@ -28,8 +28,16 @@
 			}
 		}
 
-		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted
+		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent
 		{
+
+			var existingdata =	await _context.Set<TEntity>()
+								.Where(x => x.HasBeenDeleted == false && x.TextContent == data.TextContent)
+								.ToListAsync();
+
+			if (existingdata.Count >= 1) return;
+			
+
 			try
 			{
 				_context.Add<TEntity>(data);
