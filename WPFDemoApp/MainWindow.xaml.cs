@@ -1,4 +1,6 @@
-﻿namespace WPFDemoApp
+﻿using Microsoft.IdentityModel.Tokens;
+
+namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -18,6 +20,11 @@
 
 		private async void AddButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (InputTextBox.Text.IsNullOrEmpty())
+			{
+				MessageBox.Show("Please enter an item before adding.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
 			try
 			{
 				var dataToSave = CreateNewToDoItem(InputTextBox.Text);
