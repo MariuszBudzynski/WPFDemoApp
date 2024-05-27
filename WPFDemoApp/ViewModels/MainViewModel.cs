@@ -63,7 +63,7 @@
 
 		public async Task DeleteData(string data)
 		{
-			var item = new ToDoItem() { TextContent=data};
+			var item = CreateNewToDoItem(data);
 			await _softDeleteItemUseCase.ExecuteAsync(item);
 			await RefreshDataAsync();
 		}
