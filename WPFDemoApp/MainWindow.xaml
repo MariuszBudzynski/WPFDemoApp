@@ -6,23 +6,25 @@
         xmlns:local="clr-namespace:WPFDemoApp"
         mc:Ignorable="d"
         Title="DemoApp" Height="450" Width="800">
-    <Grid>
+    <Grid Background="DarkGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Label to display "To Do List" -->
-        <Label Content="To Do List" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="24"/>
+        <Label FontFamily="Times New Roman" Foreground="White" Content="To Do List" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="24" FontWeight="Bold"/>
 
         <!-- ItemsControl to display the TextContentList -->
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding TextContentList}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <!-- TextBlock to display each item in the TextContentList -->
-                    <TextBlock Text="{Binding}" Margin="5"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10" Background="Gray">
+            <ItemsControl Grid.Row="1" ItemsSource="{Binding TextContentList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- TextBlock to display each item in the TextContentList -->
+                        <TextBlock Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
     </Grid>
 </Window>
