@@ -13,5 +13,10 @@
 			_viewModel = viewModel;
 			DataContext = _viewModel;
 		}
-	}
+
+		private void AddButton_Click(object sender, RoutedEventArgs e)
+		{
+			//Implement later
+        }
+    }
 }
