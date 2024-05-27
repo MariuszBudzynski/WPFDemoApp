@@ -20,5 +20,23 @@
 		
 		}
 
+		private async void EditButton_Click(object sender, RoutedEventArgs e)
+		{
+			//To Do
+
+		}
+
+		private async void SaveButton_Click(object sender, RoutedEventArgs e)
+		{
+			//To Do
+
+		}
+
+		private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			//To Do
+
+		}
+
 	}
 }
