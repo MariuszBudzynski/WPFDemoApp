@@ -6,6 +6,8 @@
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
 		private readonly IGetAllDataUseCase _getAllDataUseCase;
+		private readonly ISaveSingleDataItemUseCase _saveSingleDataItemUseCase;
+
 
 		private ObservableCollection<string> _textContentList;
 
@@ -21,10 +23,11 @@
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public MainViewModel(IGetAllDataUseCase getAllDataUseCase)
+		public MainViewModel(IGetAllDataUseCase getAllDataUseCase, ISaveSingleDataItemUseCase saveSingleDataItemUseCase)
 		{
 			_getAllDataUseCase = getAllDataUseCase;
-			 LoadDataAsync(); // Automatic data loading when creating a ViewModel
+			_saveSingleDataItemUseCase = saveSingleDataItemUseCase;
+			LoadDataAsync(); // Automatic data loading when creating a ViewModel
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -54,9 +57,38 @@
 			}
 		}
 
-		public async Task RefreshDataAsync()
+		private async Task RefreshDataAsync()
 		{
 			await LoadDataAsync();
+		}
+
+		public async Task AddData(string inputTextData)
+		{
+			if (inputTextData.IsNullOrEmpty())
+			{
+				MessageBox.Show("Please enter an item before adding.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				return;
+			}
+			try
+			{
+				var dataToSave = CreateNewToDoItem(inputTextData);
+				await _saveSingleDataItemUseCase.ExecuteAsync(dataToSave);
+				await RefreshDataAsync();
+			}
+			catch (Exception ex)
+			{
+
+				MessageBox.Show($"An error occurred while saving data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+			}
+		}
+
+		private ToDoItem CreateNewToDoItem(string textContext)
+		{
+			return new ToDoItem
+			{
+				HasBeenDeleted = false,
+				TextContent = textContext
+			};
 		}
 	}
 }

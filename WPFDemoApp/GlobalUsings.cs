@@ -16,3 +16,4 @@ global using WPFDemoApp.DTOS;
 global using WPFDemoApp.Helpers;
 global using Microsoft.Extensions.Configuration;
 global using System.IO;
+global using Microsoft.IdentityModel.Tokens;
