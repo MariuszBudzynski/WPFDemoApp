@@ -27,6 +27,20 @@
 				throw;
 			}
 		}
+
+		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted
+		{
+			try
+			{
+				_context.Add<TEntity>(data);
+				await _context.SaveChangesAsync();
+			}
+			catch (DbException ex)
+			{
+				_logger.Error(ex, "An error occurred while saving data to the database.");
+				throw;
+			}
+		}
 	}
 
 }
