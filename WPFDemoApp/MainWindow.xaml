@@ -28,14 +28,16 @@
 
         <!-- Border around the ItemsControl -->
         <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10" Background="Gray">
-            <ItemsControl ItemsSource="{Binding TextContentList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <!-- TextBlock to display each item in the TextContentList -->
-                        <TextBlock Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <ItemsControl ItemsSource="{Binding TextContentList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- TextBlock to display each item in the TextContentList -->
+                            <TextBlock Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Border>
     </Grid>
 </Window>
