@@ -53,5 +53,10 @@
 				_logger.Error(ex, "An error occurred while loading data.");
 			}
 		}
+
+		public async Task RefreshDataAsync()
+		{
+			await LoadDataAsync();
+		}
 	}
 }

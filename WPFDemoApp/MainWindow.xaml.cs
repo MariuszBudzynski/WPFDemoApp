@@ -22,6 +22,7 @@
 			{
 				var dataToSave = CreateNewToDoItem(InputTextBox.Text);
 				await _saveSingleDataItemUseCase.ExecuteAsync(dataToSave);
+				await _viewModel.RefreshDataAsync();
 			}
 			catch (Exception ex)
 			{
