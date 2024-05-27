@@ -1,4 +1,6 @@
-﻿namespace WPFDemoApp
+﻿using System.Windows.Controls;
+
+namespace WPFDemoApp
 {
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
@@ -6,6 +8,10 @@
 	public partial class MainWindow : Window
 	{
 		private readonly MainViewModel _viewModel;
+
+		private Button Save_Button;
+		private Button Delete_Button;
+		private Button Edit_Button;
 
 		public MainWindow(MainViewModel viewModel, ISaveSingleDataItemUseCase saveSingleDataItemUseCase)
 		{
@@ -18,18 +24,6 @@
 		{
 			await _viewModel.AddData(InputTextBox.Text);
 		
-		}
-
-		private async void EditButton_Click(object sender, RoutedEventArgs e)
-		{
-			//To Do
-
-		}
-
-		private async void SaveButton_Click(object sender, RoutedEventArgs e)
-		{
-			//To Do
-
 		}
 
 		private async void DeleteButton_Click(object sender, RoutedEventArgs e)

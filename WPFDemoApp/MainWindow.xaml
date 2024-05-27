@@ -18,56 +18,65 @@
     </Window.Resources>
 
     <Grid Background="DarkGray">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <TabControl Background="DarkGray">
+            <!-- First Tab: To Do List -->
+            <TabItem Background="DarkGray" Header="To Do List">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-        <!-- Label to display "To Do List" -->
-        <Label FontFamily="Times New Roman" Foreground="White" Content="To Do List" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="24" FontWeight="Bold"/>
+                    <!-- Label to display "To Do List" -->
+                    <Label FontFamily="Times New Roman" Foreground="White" Content="To Do List" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="24" FontWeight="Bold"/>
 
-        <!-- Grid to hold TextBox and Button -->
-        <Grid Grid.Row="1" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBox BorderBrush="Black" BorderThickness="1" x:Name="InputTextBox" Grid.Column="0" Margin="5,5,0,5" Text="Enter To Do Item" HorizontalAlignment="Left" Width="680"/>
-            <Button Content="Add" Grid.Column="1" Width="75" Margin="5" HorizontalAlignment="Right" Click="AddButton_Click"/>
-        </Grid>
+                    <!-- Grid to hold TextBox and Button -->
+                    <Grid Grid.Row="1" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox BorderBrush="Black" BorderThickness="1" x:Name="InputTextBox" Grid.Column="0" Margin="5,5,0,5" Text="Enter To Do Item" HorizontalAlignment="Left" Width="680"/>
+                        <Button Content="Add" Grid.Column="1" Width="75" Margin="5" HorizontalAlignment="Right" Click="AddButton_Click"/>
+                    </Grid>
 
-        <!-- Border around the ItemsControl -->
-        <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10" Background="Gray">
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding TextContentList}">
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <!-- Grid to hold TextBlock and Buttons -->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <!-- TextBlock to display each item in the TextContentList -->
-                                <TextBlock Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
-                                <!-- Spacer to push Buttons to the right -->
-                                <Grid Grid.Column="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <!-- Buttons -->
-                                    <Button Foreground="Black" Background="LightGray" Grid.Column="1" Content="SAVE" Margin="5" Click="SaveButton_Click" Style="{StaticResource RoundedButtonStyle}" Visibility="Collapsed"/>
-                                    <Button Foreground="Black" Background="LightGray" Grid.Column="2" Content="DELETE" Margin="5" Click="DeleteButton_Click" Style="{StaticResource RoundedButtonStyle}" Visibility="Collapsed"/>
-                                    <Button Foreground="Black" Background="LightGray" Grid.Column="0" Content="EDIT" Margin="5" Click="EditButton_Click" Style="{StaticResource RoundedButtonStyle}"/>
-                                </Grid>
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </ScrollViewer>
-        </Border>
+                    <!-- Border around the ItemsControl -->
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10" Background="Gray">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding TextContentList}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- Grid to hold TextBlock and Buttons -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <!-- TextBlock to display each item in the TextContentList -->
+                                            <TextBlock Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+                                            <Grid Grid.Column="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <!-- Buttons -->
+                                                <Button x:Name="Delete_Button" Foreground="Black" Background="LightGray" Grid.Column="2" Content="DELETE" Margin="10" Click="DeleteButton_Click" Style="{StaticResource RoundedButtonStyle}"/>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
+            </TabItem>
+
+            <!-- Second Tab: Edit -->
+            <TabItem Background="DarkGray" Header="Edit">
+                <!-- Add  edit controls here -->
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
