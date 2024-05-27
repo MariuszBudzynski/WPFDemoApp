@@ -1,11 +1,11 @@
 ﻿namespace WPFDemoApp.Core.UseCases
 {
-	internal class SaveSingleDataItemUseCase
+    public class SaveSingleDataItemUseCase : ISaveSingleDataItemUseCase
 	{
 		private readonly IRepository _repository;
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 		public SaveSingleDataItemUseCase(IRepository repository)
-        {
+		{
 			_repository = repository;
 		}
 

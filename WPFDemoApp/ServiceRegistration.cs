@@ -11,6 +11,7 @@
 			services.AddScoped<MainWindow>();
 			services.AddScoped<ToDoItem>();
 			services.AddScoped<IRepository, Repository>();
+			services.AddScoped<ISaveSingleDataItemUseCase, SaveSingleDataItemUseCase>();
 			services.AddScoped<IGetAllDataUseCase, GetAllDataUseCase>();
 			services.AddScoped<MainViewModel>();
 
