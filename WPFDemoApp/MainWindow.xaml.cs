@@ -28,7 +28,11 @@ namespace WPFDemoApp
 
 		private async void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			//To Do
+			if (sender is Button button && button.CommandParameter is string item)
+			{
+
+				await _viewModel.DeleteData(item);
+			}
 
 		}
 

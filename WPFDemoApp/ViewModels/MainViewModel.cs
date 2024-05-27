@@ -7,6 +7,7 @@
 
 		private readonly IGetAllDataUseCase _getAllDataUseCase;
 		private readonly ISaveSingleDataItemUseCase _saveSingleDataItemUseCase;
+		private readonly ISoftDeleteItemUseCase _softDeleteItemUseCase;
 
 
 		private ObservableCollection<string> _textContentList;
@@ -23,10 +24,13 @@
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public MainViewModel(IGetAllDataUseCase getAllDataUseCase, ISaveSingleDataItemUseCase saveSingleDataItemUseCase)
+		public MainViewModel(	IGetAllDataUseCase getAllDataUseCase,
+								ISaveSingleDataItemUseCase saveSingleDataItemUseCase,
+								ISoftDeleteItemUseCase softDeleteItemUseCase)
 		{
 			_getAllDataUseCase = getAllDataUseCase;
 			_saveSingleDataItemUseCase = saveSingleDataItemUseCase;
+			_softDeleteItemUseCase = softDeleteItemUseCase;
 			LoadDataAsync(); // Automatic data loading when creating a ViewModel
 		}
 
@@ -55,6 +59,13 @@
 			{
 				_logger.Error(ex, "An error occurred while loading data.");
 			}
+		}
+
+		public async Task DeleteData(string data)
+		{
+			var item = new ToDoItem() { TextContent=data};
+			await _softDeleteItemUseCase.ExecuteAsync(item);
+			await RefreshDataAsync();
 		}
 
 		private async Task RefreshDataAsync()

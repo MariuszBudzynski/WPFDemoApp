@@ -13,6 +13,7 @@
 			services.AddScoped<IRepository, Repository>();
 			services.AddScoped<ISaveSingleDataItemUseCase, SaveSingleDataItemUseCase>();
 			services.AddScoped<IGetAllDataUseCase, GetAllDataUseCase>();
+			services.AddScoped<ISoftDeleteItemUseCase, SoftDeleteItemUseCase>();
 			services.AddScoped<MainViewModel>();
 
 			// Add other services

@@ -41,6 +41,24 @@
 				throw;
 			}
 		}
+
+		public async Task SoftDeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent
+		{
+			var itemExists = await _context.Set<TEntity>().SingleOrDefaultAsync(x=>x.TextContent == data.TextContent);
+			if (itemExists == null) return;
+
+			try
+			{
+				itemExists.HasBeenDeleted = true;
+				_context.Update(itemExists);
+				await _context.SaveChangesAsync();
+			}
+			catch (DbException ex)
+			{
+				_logger.Error(ex, "An error occurred while soft delete.");
+				throw;
+			}
+		}
 	}
 
 }
