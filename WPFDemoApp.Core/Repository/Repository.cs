@@ -30,13 +30,13 @@
 
 		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent
 		{
+				var items = await _context.Set<TEntity>()
+								.Where(x => x.TextContent == data.TextContent)
+								.ToListAsync();
 
+			var existingdata = items.FirstOrDefault(x => x.HasBeenDeleted == false);
 
-			var existingdata = await _context.Set<TEntity>()
-							 .SingleOrDefaultAsync(x => x.HasBeenDeleted == false && x.TextContent == data.TextContent);
-
-			var deletedData = await _context.Set<TEntity>()
-							 .SingleOrDefaultAsync(x => x.HasBeenDeleted == true && x.TextContent == data.TextContent);
+			var deletedData = items.FirstOrDefault(x => x.HasBeenDeleted == true);
 
 
 			if (existingdata != null)
