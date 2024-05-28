@@ -11,3 +11,4 @@ Functionality:
 3. Delete tasks - DONE
 4. Mark tasks as completed
 5. Filter tasks (all, completed, incomplete)
+6. Search box - Done
