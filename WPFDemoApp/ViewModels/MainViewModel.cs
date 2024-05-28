@@ -22,6 +22,19 @@
 			}
 		}
 
+
+		private bool _hasBeenCompleted;
+
+		public bool HasBeenCompleted
+		{
+			get => _hasBeenCompleted;
+			set
+			{
+				_hasBeenCompleted = value;
+				OnPropertyChanged();
+			}
+		}
+
 		public event PropertyChangedEventHandler PropertyChanged;
 
 		public MainViewModel(	IGetAllDataUseCase getAllDataUseCase,
@@ -124,5 +137,6 @@
 			}
 
 		}
+
 	}
 }

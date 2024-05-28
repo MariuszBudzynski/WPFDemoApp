@@ -9,10 +9,6 @@ namespace WPFDemoApp
 	{
 		private readonly MainViewModel _viewModel;
 
-		private Button Save_Button;
-		private Button Delete_Button;
-		private Button Edit_Button;
-
 		public MainWindow(MainViewModel viewModel, ISaveSingleDataItemUseCase saveSingleDataItemUseCase)
 		{
 			InitializeComponent();
@@ -42,6 +38,16 @@ namespace WPFDemoApp
 
 			await _viewModel.SeaarchAsync(searchText);
 
+		}
+
+		private async void CheckBox_Checked(object sender, RoutedEventArgs e)
+		{
+			//Do stuff
+		}
+
+		private async void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+		{
+			//Do stuff
 		}
 
 	}

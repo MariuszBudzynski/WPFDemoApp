@@ -61,13 +61,17 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
-                                            <!-- TextBlock to display each item in the TextContentList -->
-                                            <CheckBox Grid.Column="0" VerticalAlignment="Center" Margin="5 0"></CheckBox>
-                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Foreground="White" Text="{Binding}" FontFamily="Trebuchet MS" FontSize="14"/>
-                                            <!-- Buttons -->
-                                            <Button x:Name="Delete_Button" Foreground="Black" Background="LightGray" Grid.Column="2"
-                                               Content="DELETE" Margin="10" Click="DeleteButton_Click"
-                                               Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>
+                                            <!-- CheckBox to mark task as completed -->
+                                            <CheckBox Grid.Column="0" VerticalAlignment="Center" Margin="5 0"/>
+                                            <!-- adjusted margin -->
+
+                                            <!-- TextBlock to display task content -->
+                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+
+                                            <!-- Button to delete task -->
+                                            <Button x:Name="Delete_Button" Grid.Column="2" Foreground="Black" Background="LightGray"
+                                                    Content="DELETE" Margin="10" Click="DeleteButton_Click"
+                                                    Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
