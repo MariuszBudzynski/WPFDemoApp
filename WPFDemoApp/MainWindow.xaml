@@ -39,10 +39,11 @@
                         </Grid.ColumnDefinitions>
                         <TextBox BorderBrush="Black" BorderThickness="1" x:Name="InputTextBox" Grid.Column="0" Margin="5,5,0,5" HorizontalAlignment="Left" Width="680"/>
                         <Button Content="Add" Grid.Column="1" Width="75" Margin="5" HorizontalAlignment="Right" Click="AddButton_Click"/>
+                        <Label>Search</Label>
                     </Grid>
 
                     <!-- Border around the ItemsControl -->
-                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10" Padding="10" Background="Gray">
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10,43,10,10" Padding="10" Background="Gray">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding TextContentList}">
                                 <ItemsControl.ItemTemplate>
