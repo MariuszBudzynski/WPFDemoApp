@@ -31,7 +31,7 @@
 			_getAllDataUseCase = getAllDataUseCase;
 			_saveSingleDataItemUseCase = saveSingleDataItemUseCase;
 			_softDeleteItemUseCase = softDeleteItemUseCase;
-			LoadDataAsync(); // Automatic data loading when creating a ViewModel
+			LoadDataAsyncAsync(); // Automatic data loading when creating a ViewModel
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -40,7 +40,7 @@
 		}
 
 		// Asynchronous method to load data using the use case and update the Entities property
-		private async Task LoadDataAsync()
+		private async Task LoadDataAsyncAsync()
 		{
 			try
 			{
@@ -61,7 +61,7 @@
 			}
 		}
 
-		public async Task DeleteData(string data)
+		public async Task DeleteDataAsync(string data)
 		{
 			var item = CreateNewToDoItem(data);
 			await _softDeleteItemUseCase.ExecuteAsync(item);
@@ -70,10 +70,10 @@
 
 		private async Task RefreshDataAsync()
 		{
-			await LoadDataAsync();
+			await LoadDataAsyncAsync();
 		}
 
-		public async Task AddData(string inputTextData)
+		public async Task AddDataAsync(string inputTextData)
 		{
 			if (inputTextData.IsNullOrEmpty())
 			{
@@ -100,6 +100,29 @@
 				HasBeenDeleted = false,
 				TextContent = textContext
 			};
+		}
+
+		public async Task SeaarchAsync(string searchPhrase)
+		{
+			try
+			{
+				var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
+				var dtoData = data.ToDto();
+				var filteredData = dtoData.Where(x => x.TextContent.Contains(searchPhrase.ToLower()));
+				var textContentList = new ObservableCollection<string>();
+
+				foreach (var item in filteredData)
+				{
+					textContentList.Add(item.TextContent);
+				}
+
+				TextContentList = textContentList;
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "An error occurred while filtering data.");
+			}
+
 		}
 	}
 }

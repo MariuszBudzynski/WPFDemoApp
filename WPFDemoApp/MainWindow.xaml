@@ -45,7 +45,7 @@
                         <TextBox BorderBrush="Black" BorderThickness="1" x:Name="InputTextBox" Margin="54,6,0,4" HorizontalAlignment="Left" Width="690"/>
                         <Button Content="Add" Width="49" Margin="0,4,0,4" HorizontalAlignment="Left" Click="AddButton_Click"/>
                         <Label Content="Search:" Grid.Row="2" Grid.Column="0" Margin="0,21,0,-47"/>
-                        <TextBox x:Name="Search_Box" Grid.Row="1" Grid.Column="0" Margin="54,25,10,-25" Grid.RowSpan="2"></TextBox>
+                        <TextBox x:Name="Search_Box" Grid.Row="1" Grid.Column="0" Margin="54,25,10,-25" Grid.RowSpan="2" TextChanged="Search_Box_TextChanged"></TextBox>
                     </Grid>
 
                     <!-- Border around the ItemsControl -->

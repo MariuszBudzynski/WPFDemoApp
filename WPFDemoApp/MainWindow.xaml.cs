@@ -22,7 +22,7 @@ namespace WPFDemoApp
 
 		private async void AddButton_Click(object sender, RoutedEventArgs e)
 		{
-			await _viewModel.AddData(InputTextBox.Text);
+			await _viewModel.AddDataAsync(InputTextBox.Text);
 		
 		}
 
@@ -31,8 +31,16 @@ namespace WPFDemoApp
 			if (sender is Button button && button.CommandParameter is string item)
 			{
 
-				await _viewModel.DeleteData(item);
+				await _viewModel.DeleteDataAsync(item);
 			}
+
+		}
+
+		private async void Search_Box_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			string searchText = Search_Box.Text;
+
+			await _viewModel.SeaarchAsync(searchText);
 
 		}
 
