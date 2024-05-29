@@ -72,7 +72,7 @@
 			}
 		}
 
-		public async Task SoftDeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent
+		public async Task SoftDeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent, IEntityHasBeenCompleted
 		{
 			var itemExists = await _context.Set<TEntity>().SingleOrDefaultAsync(x=>x.TextContent == data.TextContent);
 			if (itemExists == null) return;
@@ -90,8 +90,7 @@
 			}
 		}
 
-		//Prepare the UseCase Chain later
-		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent
+		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted
 		{
 			
 			if (data == null) return;

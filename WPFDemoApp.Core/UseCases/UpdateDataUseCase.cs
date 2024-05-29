@@ -1,20 +1,19 @@
 ﻿namespace WPFDemoApp.Core.UseCases
 {
-    public class SoftDeleteItemUseCase : ISoftDeleteItemUseCase
+    public class UpdateDataUseCase : IUpdateDataUseCase
 	{
 		private readonly IRepository _repository;
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
-		public SoftDeleteItemUseCase(IRepository repository)
+		public UpdateDataUseCase(IRepository repository)
 		{
 			_repository = repository;
 		}
 
-		public async Task ExecuteAsync<TEntity>(TEntity textContent) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted
+		public async Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted
 		{
 			try
 			{
-				await _repository.SoftDeleteItem(textContent);
-
+				await _repository.UpdateItem(data);
 			}
 			catch (Exception ex)
 			{
@@ -22,5 +21,6 @@
 				throw;
 			}
 		}
+
 	}
 }

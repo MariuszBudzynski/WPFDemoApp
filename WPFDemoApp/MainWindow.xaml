@@ -58,18 +58,21 @@
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
+
+                                            <Label VerticalAlignment="Center"  Content="Done" Grid.Column="0"/>
+
                                             <!-- CheckBox to mark task as completed -->
-                                            <CheckBox Grid.Column="0" VerticalAlignment="Center" Margin="5 0"/>
-                                            <!-- adjusted margin -->
+                                            <CheckBox Tag="{Binding}" Grid.Column="1" VerticalAlignment="Center" Margin="5 0" IsChecked="{Binding HasBeenCompleted, Mode=TwoWay}" Checked="CheckBox_Checked"/>
 
                                             <!-- TextBlock to display task content -->
-                                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White" Text="{Binding}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
 
                                             <!-- Button to delete task -->
-                                            <Button x:Name="Delete_Button" Grid.Column="2" Foreground="Black" Background="LightGray"
+                                            <Button x:Name="Delete_Button" Grid.Column="3" Foreground="Black" Background="LightGray"
                                                     Content="DELETE" Margin="10" Click="DeleteButton_Click"
                                                     Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>
                                         </Grid>

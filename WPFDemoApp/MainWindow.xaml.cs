@@ -40,14 +40,15 @@ namespace WPFDemoApp
 
 		}
 
-		private async void CheckBox_Checked(object sender, RoutedEventArgs e)
+		private async void CheckBox_Checked(object sender,RoutedEventArgs e)
 		{
-			//Do stuff
-		}
-
-		private async void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-		{
-			//Do stuff
+			if (sender is CheckBox checkBox)
+			{
+				if (checkBox.Tag is string toDoItem)
+				{
+					await _viewModel.UpdateCheckbox(toDoItem, checkBox.IsChecked ?? false);
+				}
+			}
 		}
 
 	}

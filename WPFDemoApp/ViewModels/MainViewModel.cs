@@ -8,6 +8,7 @@
 		private readonly IGetAllDataUseCase _getAllDataUseCase;
 		private readonly ISaveSingleDataItemUseCase _saveSingleDataItemUseCase;
 		private readonly ISoftDeleteItemUseCase _softDeleteItemUseCase;
+		private readonly IUpdateDataUseCase _updateDataUseCase;
 
 
 		private ObservableCollection<string> _textContentList;
@@ -39,12 +40,14 @@
 
 		public MainViewModel(	IGetAllDataUseCase getAllDataUseCase,
 								ISaveSingleDataItemUseCase saveSingleDataItemUseCase,
-								ISoftDeleteItemUseCase softDeleteItemUseCase)
+								ISoftDeleteItemUseCase softDeleteItemUseCase,
+								IUpdateDataUseCase updateDataUseCase)
 		{
 			_getAllDataUseCase = getAllDataUseCase;
 			_saveSingleDataItemUseCase = saveSingleDataItemUseCase;
 			_softDeleteItemUseCase = softDeleteItemUseCase;
-			LoadDataAsyncAsync(); // Automatic data loading when creating a ViewModel
+			_updateDataUseCase = updateDataUseCase;
+			LoadDataAsyn(); // Automatic data loading when creating a ViewModel
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -53,7 +56,7 @@
 		}
 
 		// Asynchronous method to load data using the use case and update the Entities property
-		private async Task LoadDataAsyncAsync()
+		private async Task LoadDataAsyn()
 		{
 			try
 			{
@@ -83,7 +86,7 @@
 
 		private async Task RefreshDataAsync()
 		{
-			await LoadDataAsyncAsync();
+			await LoadDataAsyn();
 		}
 
 		public async Task AddDataAsync(string inputTextData)
@@ -111,7 +114,8 @@
 			return new ToDoItem
 			{
 				HasBeenDeleted = false,
-				TextContent = textContext
+				TextContent = textContext,
+				HasBeenCompleted = false
 			};
 		}
 
@@ -135,6 +139,15 @@
 			{
 				_logger.Error(ex, "An error occurred while filtering data.");
 			}
+
+		}
+
+		public async Task UpdateCheckbox(string name,bool state)
+		{
+			var data = (await _getAllDataUseCase.ExecuteAsync<ToDoItem>()).FirstOrDefault(x=>x.TextContent==name);
+			data.HasBeenCompleted = state;
+			await _updateDataUseCase.ExecuteAsync(data);
+			//await RefreshDataAsync();
 
 		}
 
