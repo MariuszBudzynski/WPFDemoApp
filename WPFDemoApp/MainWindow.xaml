@@ -20,7 +20,7 @@
     <Grid Background="DarkGray">
         <TabControl Background="DarkGray">
             <!-- First Tab: To Do List -->
-            <TabItem Background="DarkGray" Header="To Do List">
+            <TabItem  Background="DarkGray" Header="To Do List">
                 <Grid Margin="0,0,-1,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
