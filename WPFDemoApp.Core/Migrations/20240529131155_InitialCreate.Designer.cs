@@ -11,7 +11,7 @@ using WPFDemoApp.Core.Context;
 namespace WPFDemoApp.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240522100815_InitialCreate")]
+    [Migration("20240529131155_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -32,7 +32,7 @@ namespace WPFDemoApp.Core.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("HasBeenDeleted")
+                    b.Property<bool>("HasBeenCompleted")
                         .HasColumnType("bit");
 
                     b.Property<string>("TextContent")

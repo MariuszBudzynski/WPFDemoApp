@@ -2,6 +2,6 @@
 {
     public interface ISaveSingleDataItemUseCase
     {
-        Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent;
+        Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityTextContent;
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IUpdateDataUseCase
     {
-        Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted;
+        Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted;
     }
 }

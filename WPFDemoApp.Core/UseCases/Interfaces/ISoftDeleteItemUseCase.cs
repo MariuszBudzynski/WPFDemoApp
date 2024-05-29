@@ -2,6 +2,6 @@
 {
     public interface ISoftDeleteItemUseCase
     {
-        Task ExecuteAsync<TEntity>(TEntity textContent) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted;
+        Task ExecuteAsync<TEntity>(TEntity textContent) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted;
     }
 }

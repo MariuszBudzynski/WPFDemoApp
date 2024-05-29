@@ -2,6 +2,6 @@
 {
 	public interface IGetAllDataUseCase
 	{
-		Task<IEnumerable<TEntity>> ExecuteAsync<TEntity>() where TEntity : class, IEntityHasBeenDeleted;
+		Task<IEnumerable<TEntity>> ExecuteAsync<TEntity>() where TEntity : class;
 	}
 }

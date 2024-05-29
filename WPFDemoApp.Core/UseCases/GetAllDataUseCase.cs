@@ -10,7 +10,7 @@
 			_repository = repository;
 		}
 
-		public async Task<IEnumerable<TEntity>> ExecuteAsync<TEntity>() where TEntity : class, IEntityHasBeenDeleted
+		public async Task<IEnumerable<TEntity>> ExecuteAsync<TEntity>() where TEntity : class
 		{
 			try
 			{

@@ -32,9 +32,6 @@ namespace WPFDemoApp.Core.Migrations
                     b.Property<bool>("HasBeenCompleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("HasBeenDeleted")
-                        .HasColumnType("bit");
-
                     b.Property<string>("TextContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

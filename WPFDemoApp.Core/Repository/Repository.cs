@@ -11,12 +11,11 @@
 			_context = context;
 		}
 
-		public async Task<IEnumerable<TEntity>> GetAllDataAsync<TEntity>() where TEntity : class,IEntityHasBeenDeleted
+		public async Task<IEnumerable<TEntity>> GetAllDataAsync<TEntity>() where TEntity : class
 		{
 			try
 			{
 				IEnumerable<TEntity> data = await _context.Set<TEntity>()
-					.Where(x => x.HasBeenDeleted == false)
 					.ToListAsync();
 
 				return data;
@@ -28,41 +27,21 @@
 			}
 		}
 
-		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent
+		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityTextContent
 		{
-				var items = await _context.Set<TEntity>()
-								.Where(x => x.TextContent == data.TextContent)
-								.ToListAsync();
-
-			var existingdata = items.FirstOrDefault(x => x.HasBeenDeleted == false);
-
-			var deletedData = items.FirstOrDefault(x => x.HasBeenDeleted == true);
+	
+			var existingData = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.TextContent == data.TextContent);
 
 
-			if (existingdata != null)
+			if (existingData != null)
 			{
 				return;
 			}
-			 if (deletedData!= null)
-			{
-					try
-					{
-						deletedData.HasBeenDeleted = false;
-						_context.Update(deletedData);
-						await _context.SaveChangesAsync();
-					}
-					catch (DbException ex)
-					{
-						_logger.Error(ex, "An error occurred while saving data to the database.");
-						throw;
-					}
-					return;
-			}
-
 
 			try
 			{
-				_context.Add<TEntity>(data);
+
+				_context.Add(data);
 				await _context.SaveChangesAsync();
 			}
 			catch (DbException ex)
@@ -72,32 +51,36 @@
 			}
 		}
 
-		public async Task SoftDeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted,IEntityTextContent, IEntityHasBeenCompleted
+		public async Task DeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted
 		{
-			var itemExists = await _context.Set<TEntity>().SingleOrDefaultAsync(x=>x.TextContent == data.TextContent);
-			if (itemExists == null) return;
+			var item = await _context.Set<TEntity>().SingleOrDefaultAsync(x => x.TextContent == data.TextContent);
+			if (item == null) return;
 
 			try
 			{
-				itemExists.HasBeenDeleted = true;
-				await UpdateItem(itemExists);
-
+				_context.Set<TEntity>().Remove(item);
+				await _context.SaveChangesAsync();
 			}
 			catch (DbException ex)
 			{
-				_logger.Error(ex, "An error occurred while soft delete was in progress.");
+				_logger.Error(ex, "An error occurred while deleting the item.");
 				throw;
 			}
 		}
 
-		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted
+
+		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted
 		{
 			
 			if (data == null) return;
- 
-            try
+			var existingData = (await GetAllDataAsync<TEntity>()).FirstOrDefault(x=>x.TextContent==data.TextContent);
+
+
+			try
 			{
-				_context.Update(data);
+				existingData.TextContent = data.TextContent;
+				existingData.HasBeenCompleted = data.HasBeenCompleted;
+				_context.Update(existingData);
 				await _context.SaveChangesAsync();
 			}
 			catch (DbException ex)

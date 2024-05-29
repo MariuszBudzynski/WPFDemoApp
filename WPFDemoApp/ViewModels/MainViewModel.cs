@@ -11,9 +11,9 @@
 		private readonly IUpdateDataUseCase _updateDataUseCase;
 
 
-		private ObservableCollection<string> _textContentList;
+		private ObservableCollection<ToDoItemDTO> _textContentList;
 
-		public ObservableCollection<string> TextContentList
+		public ObservableCollection<ToDoItemDTO> TextContentList
 		{
 			get => _textContentList;
 			set
@@ -62,12 +62,9 @@
 			{
 				var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
 				var dtoData = data.ToDto();
-				var textContentList = new ObservableCollection<string>();
+				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
 
-				foreach (var item in data)
-				{
-					textContentList.Add(item.TextContent);
-				}
+
 
 				TextContentList = textContentList;
 			}
@@ -77,9 +74,10 @@
 			}
 		}
 
-		public async Task DeleteDataAsync(string data)
+
+		public async Task DeleteDataAsync(ToDoItemDTO data)
 		{
-			var item = CreateNewToDoItem(data);
+			var item = CreateNewToDoItem(data.TextContent,data.HasBeenCompleted);
 			await _softDeleteItemUseCase.ExecuteAsync(item);
 			await RefreshDataAsync();
 		}
@@ -89,16 +87,16 @@
 			await LoadDataAsyn();
 		}
 
-		public async Task AddDataAsync(string inputTextData)
+		public async Task AddDataAsync(ToDoItemDTO data)
 		{
-			if (inputTextData.IsNullOrEmpty())
+			if (data.TextContent.IsNullOrEmpty())
 			{
 				MessageBox.Show("Please enter an item before adding.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				return;
 			}
 			try
 			{
-				var dataToSave = CreateNewToDoItem(inputTextData);
+				var dataToSave = CreateNewToDoItem(data.TextContent);
 				await _saveSingleDataItemUseCase.ExecuteAsync(dataToSave);
 				await RefreshDataAsync();
 			}
@@ -109,15 +107,6 @@
 			}
 		}
 
-		private ToDoItem CreateNewToDoItem(string textContext)
-		{
-			return new ToDoItem
-			{
-				HasBeenDeleted = false,
-				TextContent = textContext,
-				HasBeenCompleted = false
-			};
-		}
 
 		public async Task SeaarchAsync(string searchPhrase)
 		{
@@ -126,12 +115,9 @@
 				var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
 				var dtoData = data.ToDto();
 				var filteredData = dtoData.Where(x => x.TextContent.Contains(searchPhrase.ToLower()));
-				var textContentList = new ObservableCollection<string>();
+				var textContentList = new ObservableCollection<ToDoItemDTO>(filteredData);
 
-				foreach (var item in filteredData)
-				{
-					textContentList.Add(item.TextContent);
-				}
+
 
 				TextContentList = textContentList;
 			}
@@ -142,14 +128,20 @@
 
 		}
 
-		public async Task UpdateCheckbox(string name,bool state)
+		public async Task UpdateCheckbox(ToDoItemDTO item)
 		{
-			var data = (await _getAllDataUseCase.ExecuteAsync<ToDoItem>()).FirstOrDefault(x=>x.TextContent==name);
-			data.HasBeenCompleted = state;
-			await _updateDataUseCase.ExecuteAsync(data);
-			//await RefreshDataAsync();
-
+			var itemTodo = CreateNewToDoItem(item.TextContent,item.HasBeenCompleted);
+			await _updateDataUseCase.ExecuteAsync(itemTodo);
 		}
 
+		private ToDoItem CreateNewToDoItem(string textContext, bool completed = false)
+		{
+			return new ToDoItem
+			{
+				
+				TextContent = textContext,
+				HasBeenCompleted = completed
+			};
+		}
 	}
 }

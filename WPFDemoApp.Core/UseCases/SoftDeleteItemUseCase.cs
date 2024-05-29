@@ -9,11 +9,11 @@
 			_repository = repository;
 		}
 
-		public async Task ExecuteAsync<TEntity>(TEntity textContent) where TEntity : class, IEntityHasBeenDeleted, IEntityTextContent, IEntityHasBeenCompleted
+		public async Task ExecuteAsync<TEntity>(TEntity textContent) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted
 		{
 			try
 			{
-				await _repository.SoftDeleteItem(textContent);
+				await _repository.DeleteItem(textContent);
 
 			}
 			catch (Exception ex)
