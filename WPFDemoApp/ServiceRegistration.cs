@@ -1,6 +1,4 @@
-﻿using WPFDemoApp.Converters;
-
-namespace WPFDemoApp
+﻿namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {
@@ -11,7 +9,6 @@ namespace WPFDemoApp
 			services.AddDbContext<ApplicationDbContext>(o => o.UseSqlServer(configuration.GetConnectionString("ToDoItems")));
 
 			services.AddScoped<MainWindow>();
-			services.AddScoped<BooleanToTextDecorationConverter>();
 			services.AddScoped<ToDoItem>();
 			services.AddScoped<IRepository, Repository>();
 			services.AddScoped<ISaveSingleDataItemUseCase, SaveSingleDataItemUseCase>();
