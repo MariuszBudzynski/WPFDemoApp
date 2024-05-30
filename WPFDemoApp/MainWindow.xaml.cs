@@ -63,7 +63,14 @@ namespace WPFDemoApp
 
 		private async void FilterComboBox_SelectionChanged(object sender, RoutedEventArgs e)
 		{
-			//DoStuff 
+			if (_viewModel == null) return;
+			if (sender is ComboBox comboBox)
+			{
+				var selectedFilter = comboBox.SelectedItem as ComboBoxItem;
+				string filter = selectedFilter?.Content.ToString();
+				_viewModel.Filter = filter;
+				await _viewModel.FilterItems();
+			}
 		}
 	}
 }

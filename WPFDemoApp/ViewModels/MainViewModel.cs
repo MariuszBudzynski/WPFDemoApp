@@ -9,9 +9,9 @@
 		private readonly ISaveSingleDataItemUseCase _saveSingleDataItemUseCase;
 		private readonly ISoftDeleteItemUseCase _softDeleteItemUseCase;
 		private readonly IUpdateDataUseCase _updateDataUseCase;
+		public string Filter { get; set; } = "All";
 
-
-		private ObservableCollection<ToDoItemDTO> _textContentList;
+        private ObservableCollection<ToDoItemDTO> _textContentList;
 
 		public ObservableCollection<ToDoItemDTO> TextContentList
 		{
@@ -60,12 +60,12 @@
 		{
 			try
 			{
-				var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
+				var data = Filter == "All" ? await _getAllDataUseCase.ExecuteAsync<ToDoItem>() :
+						   Filter == "Completed" ? (await _getAllDataUseCase.ExecuteAsync<ToDoItem>()).Where(x => x.HasBeenCompleted == true) :
+						   (await _getAllDataUseCase.ExecuteAsync<ToDoItem>()).Where(x => x.HasBeenCompleted == false);
+
 				var dtoData = data.ToDto();
 				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
-
-
-
 				TextContentList = textContentList;
 			}
 			catch (Exception ex)
@@ -112,7 +112,9 @@
 		{
 			try
 			{
-				var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
+				var data = Filter == "All" ? await _getAllDataUseCase.ExecuteAsync<ToDoItem>() :
+						   Filter == "Completed" ? (await _getAllDataUseCase.ExecuteAsync<ToDoItem>()).Where(x => x.HasBeenCompleted == true) :
+						   (await _getAllDataUseCase.ExecuteAsync<ToDoItem>()).Where(x => x.HasBeenCompleted == false);
 				var dtoData = data.ToDto();
 				var filteredData = dtoData.Where(x => x.TextContent.Contains(searchPhrase.ToLower()));
 				var textContentList = new ObservableCollection<ToDoItemDTO>(filteredData);
@@ -126,6 +128,35 @@
 				_logger.Error(ex, "An error occurred while filtering data.");
 			}
 
+		}
+
+		public async Task FilterItems()
+		{
+			var data = await _getAllDataUseCase.ExecuteAsync<ToDoItem>();
+
+			if (Filter == "All")
+			{
+				await RefreshDataAsync();
+
+			}
+			else if (Filter == "Completed")
+			{
+				var filteredData = data.Where(x=>x.HasBeenCompleted == true);
+				var dtoData = filteredData.ToDto();
+
+				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
+				TextContentList = textContentList;
+
+			}
+			else if (Filter == "Not Completed")
+			{
+				var filteredData = data.Where(x => x.HasBeenCompleted == false);
+				var dtoData = filteredData.ToDto();
+
+				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
+				TextContentList = textContentList;
+
+			}
 		}
 
 		public async Task UpdateCheckbox(ToDoItemDTO item)

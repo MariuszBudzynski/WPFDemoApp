@@ -65,7 +65,7 @@
                             
                                 <Label Content="Filter:" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>
                             <ComboBox x:Name="FilterComboBox" Grid.Row="0" Grid.Column="1" Margin="15,0,0,0" Width="120" HorizontalAlignment="Left"
-                                      SelectionChanged="FilterComboBox_SelectionChanged">
+                                      SelectionChanged="FilterComboBox_SelectionChanged" SelectedIndex="0">
                                 <ComboBoxItem Content="All"/>
                                 <ComboBoxItem Content="Completed"/>
                                 <ComboBoxItem Content="Not Completed"/>

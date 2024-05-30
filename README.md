@@ -9,6 +9,6 @@ Functionality:
 1. Add tasks - DONE
 2. Edit tasks
 3. Delete tasks - DONE
-4. Mark tasks as completed
-5. Filter tasks (all, completed, incomplete)
+4. Mark tasks as completed - DONE
+5. Filter tasks (all, completed, incomplete) - DONE
 6. Search box - Done
