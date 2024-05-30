@@ -26,6 +26,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+
                     </Grid.RowDefinitions>
 
                     <!-- Label to display "To Do List" -->
@@ -45,9 +47,26 @@
                         <TextBox BorderBrush="Black" BorderThickness="1" x:Name="InputTextBox" Margin="54,6,0,4" HorizontalAlignment="Left"
                                  Width="690" MaxWidth="700" MinWidth="200"/>
                         <Button Content="Add" Width="49" Margin="0,4,0,4" HorizontalAlignment="Left" Click="AddButton_Click"/>
-                        <Label Content="Search:" Grid.Row="2" Grid.Column="0" Margin="0,21,0,-47"/>
+                        <Label Content="Search:" Grid.Row="1" Grid.Column="0" Margin="0,21,0,-47" HorizontalAlignment="Left"/>
                         <TextBox x:Name="Search_Box" Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="1"
-                                 Margin="54,25,10,-25" Grid.RowSpan="2" TextChanged="Search_Box_TextChanged" Width="690" MaxWidth="690" MinWidth="200" HorizontalAlignment="Left"></TextBox>
+                                 Margin="54,25,10,-25" Grid.RowSpan="1" TextChanged="Search_Box_TextChanged" Width="690"
+                                 MaxWidth="690" MinWidth="200" HorizontalAlignment="Left"></TextBox>
+
+                        <Grid Grid.Row="3" Margin="10">
+                            
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            
+                                <Label Content="Filter:" Grid.Row="0" Grid.Column="0" Margin="0,21,0,-47" HorizontalAlignment="Left"/>
+                            
+                            
+                        </Grid>
+                        
                     </Grid>
 
                     <!-- Border around the ItemsControl -->
@@ -76,9 +95,12 @@
                                             <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White" Text="{Binding TextContent}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
 
                                             <!-- Button to delete task -->
-                                            <Button x:Name="Delete_Button" Grid.Column="3" Foreground="Black" Background="LightGray"
-                                                    Content="DELETE" Margin="10" Click="DeleteButton_Click"
-                                                    Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>
+                                            <!--<Button x:Name="Delete_Button" Grid.Column="3" Foreground="Black" Background="LightGray" FontSize="9"
+                                                    Content="DELETE" Margin="10" Click="DeleteButton_Click" Width="50" Height="25"
+                                                    Style="{StaticResource RoundedButtonStyle}" CommandParameter="{Binding}"/>-->
+                                            <Button x:Name="Delete_Button" Grid.Column="3" Foreground="White" Background="Red" FontSize="9"
+                                                    Content="🗑" Margin="10" Click="DeleteButton_Click" Width="25" Height="25"
+                                                    CommandParameter="{Binding}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
