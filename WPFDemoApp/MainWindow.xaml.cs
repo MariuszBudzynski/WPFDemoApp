@@ -60,5 +60,10 @@ namespace WPFDemoApp
 				}
 			}
 		}
+
+		private async void FilterComboBox_SelectionChanged(object sender, RoutedEventArgs e)
+		{
+			//DoStuff 
+		}
 	}
 }
