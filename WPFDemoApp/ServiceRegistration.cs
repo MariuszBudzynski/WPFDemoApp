@@ -1,4 +1,6 @@
-﻿namespace WPFDemoApp
+﻿using WPFDemoApp.Commands;
+
+namespace WPFDemoApp
 {
 	public static class ServiceRegistration
     {
@@ -16,6 +18,9 @@
 			services.AddScoped<ISoftDeleteItemUseCase, SoftDeleteItemUseCase>();
 			services.AddScoped<IUpdateDataUseCase, UpdateDataUseCase>();
 			services.AddScoped<MainViewModel>();
+			services.AddScoped<AddDataCommand>();
+			services.AddScoped<DeleteDataCommand>();
+			services.AddScoped<SearchCommand>();
 
 			// Add other services
 			return services.BuildServiceProvider();

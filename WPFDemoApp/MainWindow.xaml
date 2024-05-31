@@ -20,7 +20,7 @@
     </Window.Resources>
 
     <Grid Background="DarkGray">
-        <TabControl Background="DarkGray">
+        <TabControl x:Name="MainTabControl" Background="DarkGray" SelectionChanged="MainTabControl_SelectionChanged">
             <!-- First Tab: To Do List -->
             <TabItem  Background="DarkGray" Header="To Do List">
                 <Grid Margin="0,0,-1,0">

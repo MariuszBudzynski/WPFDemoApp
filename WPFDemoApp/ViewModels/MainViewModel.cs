@@ -95,7 +95,7 @@
 			await RefreshDataAsync();
 		}
 
-		private async Task RefreshDataAsync()
+		public async Task RefreshDataAsync()
 		{
 			await LoadDataAsyn();
 		}

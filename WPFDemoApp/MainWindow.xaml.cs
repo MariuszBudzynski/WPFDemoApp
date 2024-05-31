@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using WPFDemoApp.Commands;
 
 namespace WPFDemoApp
 {
@@ -9,47 +10,52 @@ namespace WPFDemoApp
 	public partial class MainWindow : Window
 	{
 		private readonly MainViewModel _viewModel;
+		private readonly AddDataCommand _addDataCommand;
+		private readonly DeleteDataCommand _deleteDataCommand;
+		private readonly SearchCommand _searchCommand;
 
-		public MainWindow(MainViewModel viewModel)
+		public MainWindow(MainViewModel viewModel,
+				AddDataCommand addDataCommand,
+				DeleteDataCommand deleteDataCommand,
+				SearchCommand searchCommand)
 		{
 			InitializeComponent();
 			_viewModel = viewModel;
 			DataContext = _viewModel;
+			_addDataCommand = addDataCommand;
+			_deleteDataCommand = deleteDataCommand;
+			_searchCommand = searchCommand;
 		}
 
-		private async void AddButton_Click(object sender, RoutedEventArgs e)
+		private void AddButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (string.IsNullOrEmpty(InputTextBox.Text))
-			{
-				MessageBox.Show(this, "The input cannot be empty. Please enter some text.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-			}
-			else
-			{
-				var newItem = new ToDoItemDTO(Guid.Empty, InputTextBox.Text);
-				await _viewModel.AddDataAsync(newItem);
-			}
+			_addDataCommand.Execute(InputTextBox.Text);
 		}
 
-		private async void DeleteButton_Click(object sender, RoutedEventArgs e)
+		private  void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (sender is Button button && button.CommandParameter is ToDoItemDTO item)
 			{
-				await _viewModel.DeleteDataAsync(item);
+				_deleteDataCommand.Execute(item);
 			}
 		}
 
-		private async void Search_Box_TextChanged(object sender, TextChangedEventArgs e)
+		private  void Search_Box_TextChanged(object sender, TextChangedEventArgs e)
 		{
-			string searchText = Search_Box.Text;
-			await _viewModel.SeaarchAsync(searchText);
+			if (sender is TextBox textBox)
+			{
+				_searchCommand.Execute(textBox.Text);
+			}
 		}
 
 		private async void Search_Box_TextChangedEdit(object sender, TextChangedEventArgs e)
 		{
-			string searchText = Search_BoxEdit.Text;
-			await _viewModel.SeaarchAsync(searchText);
+			if (sender is TextBox textBox)
+			{
+				_searchCommand.Execute(textBox.Text);
+			}
 		}
-
+		//przeniesc do command
 		private async void CheckBox_Checked(object sender, RoutedEventArgs e)
 		{
 			if (sender is CheckBox checkBox)
@@ -61,6 +67,7 @@ namespace WPFDemoApp
 			}
 		}
 
+		//przeniesc do command
 		private async void CheckBox_Unchecked(object sender, RoutedEventArgs e)
 		{
 			if (sender is CheckBox checkBox)
@@ -72,6 +79,7 @@ namespace WPFDemoApp
 			}
 		}
 
+		//przeniesc do command
 		private async void FilterComboBox_SelectionChanged(object sender, RoutedEventArgs e)
 		{
 			if (_viewModel == null) return;
@@ -84,6 +92,7 @@ namespace WPFDemoApp
 			}
 		}
 
+		//przeniesc do command
 		private async void TextBox_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.Key == Key.Enter)
@@ -101,5 +110,25 @@ namespace WPFDemoApp
 				}
 			}
 		}
+
+		private async void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (e.Source is TabControl tabControl && tabControl.SelectedItem != null)
+			{
+				if (tabControl.SelectedItem == MainTabControl.Items[0]) // Sprawdzamy pierwszą zakładkę
+				{
+					await _viewModel.RefreshDataAsync();
+					Search_Box.Text = ""; // Zresetuj pole wyszukiwania na pierwszej zakładce
+				}
+				else if (tabControl.SelectedItem == MainTabControl.Items[1]) // Sprawdzamy drugą zakładkę
+				{
+					await _viewModel.RefreshDataAsync();
+					Search_BoxEdit.Text = ""; // Zresetuj pole wyszukiwania na drugiej zakładce
+				}
+			}
+		}
+
+
+
 	}
 }
