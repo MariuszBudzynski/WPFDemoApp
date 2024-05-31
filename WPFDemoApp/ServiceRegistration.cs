@@ -21,6 +21,9 @@ namespace WPFDemoApp
 			services.AddScoped<AddDataCommand>();
 			services.AddScoped<DeleteDataCommand>();
 			services.AddScoped<SearchCommand>();
+			services.AddScoped<UpdateCheckboxCommand>();
+			services.AddScoped<FilterComboBoxCommand>();
+			services.AddScoped<TextBoxKeyDownCommand>();
 
 			// Add other services
 			return services.BuildServiceProvider();

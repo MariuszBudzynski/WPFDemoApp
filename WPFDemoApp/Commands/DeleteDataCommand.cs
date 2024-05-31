@@ -14,12 +14,12 @@ namespace WPFDemoApp.Commands
 
 		public event EventHandler CanExecuteChanged;
 
-		public bool CanExecute(object parameter)
+		public bool CanExecute(object? parameter)
 		{
 			return true;
 		}
 
-		public async void Execute(object parameter)
+		public async void Execute(object? parameter)
 		{
 			if (parameter is ToDoItemDTO item)
 			{

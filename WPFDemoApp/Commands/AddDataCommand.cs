@@ -11,12 +11,12 @@ public class AddDataCommand : ICommand
 
 	public event EventHandler CanExecuteChanged;
 
-	public bool CanExecute(object parameter)
+	public bool CanExecute(object? parameter)
 	{
 		return true;
 	}
 
-	public async void Execute(object parameter)
+	public async void Execute(object? parameter)
 	{
 		if (parameter is string text && !string.IsNullOrEmpty(text))
 		{
