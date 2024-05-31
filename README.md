@@ -7,7 +7,7 @@ Project: To-Do List
 Functionality:
 
 1. Add tasks - DONE
-2. Edit tasks
+2. Edit tasks - DONE
 3. Delete tasks - DONE
 4. Mark tasks as completed - DONE
 5. Filter tasks (all, completed, incomplete) - DONE

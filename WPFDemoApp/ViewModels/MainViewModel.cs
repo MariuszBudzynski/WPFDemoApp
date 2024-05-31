@@ -177,6 +177,7 @@
 		{
 			var itemTodo = CreateNewToDoItem(item.DataId,item.TextContent,item.HasBeenCompleted);
 			await _updateDataUseCase.ExecuteAsync(itemTodo);
+			await RefreshDataAsync();
 		}
 
 		private ToDoItem CreateNewToDoItem(Guid DataId ,string textContext, bool completed = false)
@@ -189,9 +190,12 @@
 			};
 		}
 
-		private async Task UpdateData(ToDoItemDTO toDoItem)
+		public async Task UpdateData(ToDoItemDTO toDoItem)
 		{
-			var conversion = CreateNewToDoItem(toDoItem.DataId, toDoItem.TextContent,toDoItem.HasBeenCompleted);
+			var item = CreateNewToDoItem(toDoItem.DataId, toDoItem.TextContent,toDoItem.HasBeenCompleted);
+			await _updateDataUseCase.ExecuteAsync(item);
+			await RefreshDataAsync();
+			MessageBox.Show("Data updated", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 	}
 }

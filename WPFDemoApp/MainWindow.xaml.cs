@@ -19,9 +19,13 @@ namespace WPFDemoApp
 
 		private async void AddButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (!string.IsNullOrEmpty(InputTextBox.Text))
+			if (string.IsNullOrEmpty(InputTextBox.Text))
 			{
-				var newItem = new ToDoItemDTO(Guid.Empty,InputTextBox.Text);
+				MessageBox.Show(this, "The input cannot be empty. Please enter some text.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+			}
+			else
+			{
+				var newItem = new ToDoItemDTO(Guid.Empty, InputTextBox.Text);
 				await _viewModel.AddDataAsync(newItem);
 			}
 		}
@@ -86,7 +90,14 @@ namespace WPFDemoApp
 			{
 				if (sender is TextBox textBox && textBox.DataContext is ToDoItemDTO toDoItem)
 				{
-					await _viewModel.AddDataAsync(toDoItem);
+					if (string.IsNullOrWhiteSpace(textBox.Text))
+					{
+						MessageBox.Show("Text cannot be empty.", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+					}
+					else
+					{
+						await _viewModel.UpdateData(toDoItem);
+					}
 				}
 			}
 		}

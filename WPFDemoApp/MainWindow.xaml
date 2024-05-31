@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFDemoApp"
         mc:Ignorable="d"
-        Title="DemoApp" Height="450" Width="795">
+        Title="DemoApp" Height="450" Width="795"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
     <Window.Resources>
         <!-- Style for custom buttons -->
         <Style x:Key="RoundedButtonStyle" TargetType="Button">
@@ -168,10 +170,7 @@
                                 <ComboBoxItem Content="Completed"/>
                                 <ComboBoxItem Content="Not Completed"/>
                             </ComboBox>
-
-
                         </Grid>
-
                     </Grid>
 
                     <!-- Border around the ItemsControl -->
@@ -203,10 +202,6 @@
                                                   KeyDown="TextBox_KeyDown"  Margin="5"
                                                  FontFamily="Trebuchet MS" FontSize="14" Background="White"/>
 
-                                            <!-- Button to delete task -->
-                                            <!--<Button x:Name="Delete_Button" Grid.Column="3" Foreground="White" Background="Red" FontSize="9"
-                                                    Content="🗑" Margin="10" Click="DeleteButton_Click" Width="25" Height="25"
-                                                    CommandParameter="{Binding}"/>-->
                                         </Grid>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
