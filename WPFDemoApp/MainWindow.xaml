@@ -89,7 +89,6 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
                                             <Label VerticalAlignment="Center"  Content="Done" Grid.Column="0"/>
@@ -118,7 +117,42 @@
 
             <!-- Second Tab: Edit -->
             <TabItem Background="DarkGray" Header="Edit">
-                <!-- Add  edit controls here -->
+                <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10,43,22,10" Padding="10" Background="Gray">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <ItemsControl ItemsSource="{Binding ToDoItemDTOList}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Grid to hold TextBlock and Buttons -->
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label VerticalAlignment="Center"  Content="Done" Grid.Column="0"/>
+
+                                        <!-- CheckBox to mark task as completed -->
+                                        <CheckBox Tag="{Binding}" Grid.Column="1" VerticalAlignment="Center" Margin="5 0"
+                                        IsChecked="{Binding HasBeenCompleted, Mode=TwoWay}" Checked="CheckBox_Checked"
+                                        Unchecked="CheckBox_Unchecked" IsEnabled="False"/>
+
+                                        <!-- to display task content -->
+                                        <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White"
+                                        Text="{Binding TextContent}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+
+                                        <!-- Button to delete task -->
+                                        <!--<Button x:Name="Delete_Button" Grid.Column="3" Foreground="White" Background="Red" FontSize="9"
+                                        Content="🗑" Margin="10" Click="DeleteButton_Click" Width="25" Height="25"
+                                        CommandParameter="{Binding}"/>-->
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+
             </TabItem>
         </TabControl>
     </Grid>
