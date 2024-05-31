@@ -14,3 +14,4 @@ Functionality:
 6. Search box - Done
 7. Prepare unit tests for selected functionality
 8. Configure logger
+9. Code Cleanup
