@@ -5,6 +5,5 @@
 		public int Id { get; set; }
 		public string TextContent { get; set; }
 		public bool HasBeenCompleted { get; set; } = false ;
-
-	}
+    }
 }

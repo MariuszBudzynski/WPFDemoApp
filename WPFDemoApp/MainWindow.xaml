@@ -79,7 +79,7 @@
                     <!-- Border around the ItemsControl -->
                     <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10,43,22,10" Padding="10" Background="Gray">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                            <ItemsControl ItemsSource="{Binding TextContentList}">
+                            <ItemsControl ItemsSource="{Binding ToDoItemDTOList}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <!-- Grid to hold TextBlock and Buttons -->
@@ -88,6 +88,7 @@
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="Auto"/>
                                             </Grid.ColumnDefinitions>
 
@@ -98,9 +99,10 @@
                                                       IsChecked="{Binding HasBeenCompleted, Mode=TwoWay}" Checked="CheckBox_Checked"
                                                       Unchecked="CheckBox_Unchecked"/>
 
-                                            <!-- TextBlock to display task content -->
-                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White" Text="{Binding TextContent}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
-
+                                             <!-- to display task content -->
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White"
+                                                       Text="{Binding TextContent}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+                                         
                                             <!-- Button to delete task -->
                                             <Button x:Name="Delete_Button" Grid.Column="3" Foreground="White" Background="Red" FontSize="9"
                                                     Content="🗑" Margin="10" Click="DeleteButton_Click" Width="25" Height="25"

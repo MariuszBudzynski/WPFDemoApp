@@ -72,5 +72,6 @@ namespace WPFDemoApp
 				await _viewModel.FilterItems();
 			}
 		}
+
 	}
 }

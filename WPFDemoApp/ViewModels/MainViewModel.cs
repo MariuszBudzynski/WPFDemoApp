@@ -11,14 +11,14 @@
 		private readonly IUpdateDataUseCase _updateDataUseCase;
 		public string Filter { get; set; } = "All";
 
-        private ObservableCollection<ToDoItemDTO> _textContentList;
+        private ObservableCollection<ToDoItemDTO> _toDoItemDTOList;
 
-		public ObservableCollection<ToDoItemDTO> TextContentList
+		public ObservableCollection<ToDoItemDTO> ToDoItemDTOList
 		{
-			get => _textContentList;
+			get => _toDoItemDTOList;
 			set
 			{
-				_textContentList = value;
+				_toDoItemDTOList = value;
 				OnPropertyChanged();
 			}
 		}
@@ -35,6 +35,19 @@
 				OnPropertyChanged();
 			}
 		}
+		private bool _isEnabled = false;
+		public bool IsEnabled
+		{
+			get => _isEnabled;
+			set
+			{
+				if (_isEnabled != value)
+				{
+					_isEnabled = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
@@ -47,7 +60,7 @@
 			_saveSingleDataItemUseCase = saveSingleDataItemUseCase;
 			_softDeleteItemUseCase = softDeleteItemUseCase;
 			_updateDataUseCase = updateDataUseCase;
-			LoadDataAsyn(); // Automatic data loading when creating a ViewModel
+			 LoadDataAsyn(); // Automatic data loading when creating a ViewModel
 		}
 
 		protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
@@ -66,7 +79,7 @@
 
 				var dtoData = data.ToDto();
 				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
-				TextContentList = textContentList;
+				ToDoItemDTOList = textContentList;
 			}
 			catch (Exception ex)
 			{
@@ -121,7 +134,7 @@
 
 
 
-				TextContentList = textContentList;
+				ToDoItemDTOList = textContentList;
 			}
 			catch (Exception ex)
 			{
@@ -145,7 +158,7 @@
 				var dtoData = filteredData.ToDto();
 
 				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
-				TextContentList = textContentList;
+				ToDoItemDTOList = textContentList;
 
 			}
 			else if (Filter == "Not Completed")
@@ -154,7 +167,7 @@
 				var dtoData = filteredData.ToDto();
 
 				var textContentList = new ObservableCollection<ToDoItemDTO>(dtoData);
-				TextContentList = textContentList;
+				ToDoItemDTOList = textContentList;
 
 			}
 		}
