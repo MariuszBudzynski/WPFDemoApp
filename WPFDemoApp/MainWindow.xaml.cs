@@ -1,4 +1,5 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace WPFDemoApp
 {
@@ -20,7 +21,7 @@ namespace WPFDemoApp
 		{
 			if (!string.IsNullOrEmpty(InputTextBox.Text))
 			{
-				var newItem = new ToDoItemDTO(InputTextBox.Text);
+				var newItem = new ToDoItemDTO(Guid.Empty,InputTextBox.Text);
 				await _viewModel.AddDataAsync(newItem);
 			}
 		}
@@ -79,5 +80,15 @@ namespace WPFDemoApp
 			}
 		}
 
+		private async void TextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				if (sender is TextBox textBox && textBox.DataContext is ToDoItemDTO toDoItem)
+				{
+					await _viewModel.AddDataAsync(toDoItem);
+				}
+			}
+		}
 	}
 }

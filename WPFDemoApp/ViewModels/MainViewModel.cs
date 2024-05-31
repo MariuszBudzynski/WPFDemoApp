@@ -90,7 +90,7 @@
 
 		public async Task DeleteDataAsync(ToDoItemDTO data)
 		{
-			var item = CreateNewToDoItem(data.TextContent,data.HasBeenCompleted);
+			var item = CreateNewToDoItem(data.DataId, data.TextContent,data.HasBeenCompleted);
 			await _softDeleteItemUseCase.ExecuteAsync(item);
 			await RefreshDataAsync();
 		}
@@ -109,7 +109,8 @@
 			}
 			try
 			{
-				var dataToSave = CreateNewToDoItem(data.TextContent);
+				var newGuid = Guid.NewGuid();
+				var dataToSave = CreateNewToDoItem(newGuid,data.TextContent);
 				await _saveSingleDataItemUseCase.ExecuteAsync(dataToSave);
 				await RefreshDataAsync();
 			}
@@ -174,18 +175,23 @@
 
 		public async Task UpdateCheckbox(ToDoItemDTO item)
 		{
-			var itemTodo = CreateNewToDoItem(item.TextContent,item.HasBeenCompleted);
+			var itemTodo = CreateNewToDoItem(item.DataId,item.TextContent,item.HasBeenCompleted);
 			await _updateDataUseCase.ExecuteAsync(itemTodo);
 		}
 
-		private ToDoItem CreateNewToDoItem(string textContext, bool completed = false)
+		private ToDoItem CreateNewToDoItem(Guid DataId ,string textContext, bool completed = false)
 		{
 			return new ToDoItem
 			{
-				
+				DataID = DataId,
 				TextContent = textContext,
 				HasBeenCompleted = completed
 			};
+		}
+
+		private async Task UpdateData(ToDoItemDTO toDoItem)
+		{
+			var conversion = CreateNewToDoItem(toDoItem.DataId, toDoItem.TextContent,toDoItem.HasBeenCompleted);
 		}
 	}
 }

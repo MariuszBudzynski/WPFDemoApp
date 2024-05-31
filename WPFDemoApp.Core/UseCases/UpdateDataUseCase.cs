@@ -9,7 +9,7 @@
 			_repository = repository;
 		}
 
-		public async Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted
+		public async Task ExecuteAsync<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted, IEntityDataID
 		{
 			try
 			{

@@ -27,7 +27,7 @@
 			}
 		}
 
-		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class, IEntityTextContent
+		public async Task SaveSingleDataItem<TEntity>(TEntity data) where TEntity : class,IEntityTextContent
 		{
 	
 			var existingData = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.TextContent == data.TextContent);
@@ -51,9 +51,9 @@
 			}
 		}
 
-		public async Task DeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted
+		public async Task DeleteItem<TEntity>(TEntity data) where TEntity : class, IEntityDataID, IEntityHasBeenCompleted
 		{
-			var item = await _context.Set<TEntity>().SingleOrDefaultAsync(x => x.TextContent == data.TextContent);
+			var item = await _context.Set<TEntity>().SingleOrDefaultAsync(x => x.DataID == data.DataID);
 			if (item == null) return;
 
 			try
@@ -69,11 +69,11 @@
 		}
 
 
-		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityTextContent, IEntityHasBeenCompleted
+		public async Task UpdateItem<TEntity>(TEntity data) where TEntity : class, IEntityDataID, IEntityHasBeenCompleted,IEntityTextContent
 		{
 			
 			if (data == null) return;
-			var existingData = (await GetAllDataAsync<TEntity>()).FirstOrDefault(x=>x.TextContent==data.TextContent);
+			var existingData = (await GetAllDataAsync<TEntity>()).FirstOrDefault(x=>x.DataID==data.DataID);
 
 
 			try

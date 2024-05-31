@@ -1,4 +1,4 @@
 ﻿namespace WPFDemoApp.DTOS
 {
-	public record ToDoItemDTO(string TextContent,bool HasBeenCompleted = false);
+	public record ToDoItemDTO(Guid DataId,string TextContent,bool HasBeenCompleted = false);
 }
