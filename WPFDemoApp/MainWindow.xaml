@@ -116,42 +116,96 @@
             </TabItem>
 
             <!-- Second Tab: Edit -->
-            <TabItem Background="DarkGray" Header="Edit">
-                <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10,43,22,10" Padding="10" Background="Gray">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                        <ItemsControl ItemsSource="{Binding ToDoItemDTOList}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <!-- Grid to hold TextBlock and Buttons -->
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+            <TabItem Background="DarkGray" Header="Edit" Height="20" VerticalAlignment="Bottom">
 
-                                        <Label VerticalAlignment="Center"  Content="Done" Grid.Column="0"/>
+                <Grid Margin="0,0,-1,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
 
-                                        <!-- CheckBox to mark task as completed -->
-                                        <CheckBox Tag="{Binding}" Grid.Column="1" VerticalAlignment="Center" Margin="5 0"
-                                        IsChecked="{Binding HasBeenCompleted, Mode=TwoWay}" Checked="CheckBox_Checked"
-                                        Unchecked="CheckBox_Unchecked" IsEnabled="False"/>
+                    </Grid.RowDefinitions>
 
-                                        <!-- to display task content -->
-                                        <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White"
-                                        Text="{Binding TextContent}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+                    <!-- Label to display "To Do List" -->
+                    <Label FontFamily="Times New Roman" Foreground="White" Content="To Do List" HorizontalAlignment="Center" Margin="0,10,0,0" FontSize="24" FontWeight="Bold"/>
 
-                                        <!-- Button to delete task -->
-                                        <!--<Button x:Name="Delete_Button" Grid.Column="3" Foreground="White" Background="Red" FontSize="9"
-                                        Content="🗑" Margin="10" Click="DeleteButton_Click" Width="25" Height="25"
-                                        CommandParameter="{Binding}"/>-->
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </ScrollViewer>
-                </Border>
+                    <!-- Grid to hold TextBox, Button and Search Label -->
+                    <Grid Grid.Row="1" Margin="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="Search:" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left"/>
+                        <TextBox x:Name="Search_BoxEdit" Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="1"
+                                 TextChanged="Search_Box_TextChangedEdit" Width="690" Height="18"
+                                 MaxWidth="690" MinWidth="300" HorizontalAlignment="Right"></TextBox>
+
+                        <!--<Grid Grid.Row="3" Margin="0,40,0,0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Content="Filter:" Grid.Row="0" Grid.Column="0" Margin="0,0,0,0" HorizontalAlignment="Right"/>
+                            <ComboBox x:Name="FilterComboBoxEdit" Grid.Row="0" Grid.Column="1" Margin="15,0,0,0" Width="120" HorizontalAlignment="Left"
+                                      SelectionChanged="FilterComboBox_SelectionChanged" SelectedIndex="0">
+                                <ComboBoxItem Content="All"/>
+                                <ComboBoxItem Content="Completed"/>
+                                <ComboBoxItem Content="Not Completed"/>
+                            </ComboBox>
+
+
+                        </Grid>-->
+
+                    </Grid>
+
+                    <!-- Border around the ItemsControl -->
+                    <Border Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="10,43,22,10" Padding="10" Background="Gray">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding ToDoItemDTOList}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!-- Grid to hold TextBlock and Buttons -->
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Label VerticalAlignment="Center"  Content="Done" Grid.Column="0"/>
+
+                                            <!-- CheckBox to mark task as completed -->
+                                            <CheckBox Tag="{Binding}" Grid.Column="1" VerticalAlignment="Center" Margin="5 0"
+                                                      IsChecked="{Binding HasBeenCompleted, Mode=TwoWay}" Checked="CheckBox_Checked"
+                                                      Unchecked="CheckBox_Unchecked"/>
+
+                                            <!-- to display task content -->
+                                            <TextBlock Grid.Column="2" VerticalAlignment="Center" Foreground="White"
+                                                       Text="{Binding TextContent}" Margin="5" FontFamily="Trebuchet MS" FontSize="14"/>
+
+                                            <!-- Button to delete task -->
+                                            <Button x:Name="Delete_Button" Grid.Column="3" Foreground="White" Background="Red" FontSize="9"
+                                                    Content="🗑" Margin="10" Click="DeleteButton_Click" Width="25" Height="25"
+                                                    CommandParameter="{Binding}"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Border>
+                </Grid>
 
             </TabItem>
         </TabControl>

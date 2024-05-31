@@ -39,6 +39,12 @@ namespace WPFDemoApp
 			await _viewModel.SeaarchAsync(searchText);
 		}
 
+		private async void Search_Box_TextChangedEdit(object sender, TextChangedEventArgs e)
+		{
+			string searchText = Search_BoxEdit.Text;
+			await _viewModel.SeaarchAsync(searchText);
+		}
+
 		private async void CheckBox_Checked(object sender, RoutedEventArgs e)
 		{
 			if (sender is CheckBox checkBox)
