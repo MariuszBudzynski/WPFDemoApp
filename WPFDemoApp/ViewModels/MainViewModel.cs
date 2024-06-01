@@ -7,7 +7,7 @@
 
 		private readonly IGetAllDataUseCase _getAllDataUseCase;
 		private readonly ISaveSingleDataItemUseCase _saveSingleDataItemUseCase;
-		private readonly ISoftDeleteItemUseCase _softDeleteItemUseCase;
+		private readonly IDeleteItemUseCase _deleteItemUseCase;
 		private readonly IUpdateDataUseCase _updateDataUseCase;
 		public string Filter { get; set; } = "All";
 
@@ -53,12 +53,12 @@
 
 		public MainViewModel(	IGetAllDataUseCase getAllDataUseCase,
 								ISaveSingleDataItemUseCase saveSingleDataItemUseCase,
-								ISoftDeleteItemUseCase softDeleteItemUseCase,
+								IDeleteItemUseCase deleteItemUseCase,
 								IUpdateDataUseCase updateDataUseCase)
 		{
 			_getAllDataUseCase = getAllDataUseCase;
 			_saveSingleDataItemUseCase = saveSingleDataItemUseCase;
-			_softDeleteItemUseCase = softDeleteItemUseCase;
+			_deleteItemUseCase = deleteItemUseCase;
 			_updateDataUseCase = updateDataUseCase;
 			 LoadDataAsyn(); // Automatic data loading when creating a ViewModel
 		}
@@ -91,7 +91,7 @@
 		public async Task DeleteDataAsync(ToDoItemDTO data)
 		{
 			var item = CreateNewToDoItem(data.DataId, data.TextContent,data.HasBeenCompleted);
-			await _softDeleteItemUseCase.ExecuteAsync(item);
+			await _deleteItemUseCase.ExecuteAsync(item);
 			await RefreshDataAsync();
 		}
 

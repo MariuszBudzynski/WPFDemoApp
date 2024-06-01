@@ -15,7 +15,7 @@ namespace WPFDemoApp
 			services.AddScoped<IRepository, Repository>();
 			services.AddScoped<ISaveSingleDataItemUseCase, SaveSingleDataItemUseCase>();
 			services.AddScoped<IGetAllDataUseCase, GetAllDataUseCase>();
-			services.AddScoped<ISoftDeleteItemUseCase, SoftDeleteItemUseCase>();
+			services.AddScoped<IDeleteItemUseCase, SoftDeleteItemUseCase>();
 			services.AddScoped<IUpdateDataUseCase, UpdateDataUseCase>();
 			services.AddScoped<MainViewModel>();
 			services.AddScoped<AddDataCommand>();

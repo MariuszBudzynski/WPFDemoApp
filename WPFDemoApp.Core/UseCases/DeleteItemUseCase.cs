@@ -1,6 +1,6 @@
 ﻿namespace WPFDemoApp.Core.UseCases
 {
-    public class SoftDeleteItemUseCase : ISoftDeleteItemUseCase
+    public class SoftDeleteItemUseCase : IDeleteItemUseCase
 	{
 		private readonly IRepository _repository;
 		private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
