@@ -13,5 +13,5 @@ Functionality:
 5. Filter tasks (all, completed, incomplete) - DONE
 6. Search box - Done
 7. Prepare unit tests for selected functionality
-8. Configure logger
+8. Configure logger - DONE
 9. Code Cleanup

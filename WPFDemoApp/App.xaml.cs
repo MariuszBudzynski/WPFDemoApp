@@ -27,6 +27,10 @@
 		{
 			base.OnStartup(e);
 
+			var nlogConfigPath = Path.Combine(Directory.GetCurrentDirectory(), "Logger", "NLog.config");
+			LogManager.LoadConfiguration(nlogConfigPath);
+			Logger.Info("Application started.");
+
 			var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
 
 
