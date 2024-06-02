@@ -1,11 +1,4 @@
-﻿using Moq;
-using WPFDemoApp.Core.Entieties;
-using WPFDemoApp.Core.UseCases;
-using WPFDemoApp.Core.UseCases.Interfaces;
-using WPFDemoApp.DTOS;
-using WPFDemoApp.ViewModels;
-
-namespace WPFDemoApp.Tests.ModelViewTest
+﻿namespace WPFDemoApp.Tests.ModelViewTest
 {
 	public class ModelViewTest
 	{

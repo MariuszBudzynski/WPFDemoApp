@@ -1,6 +1,4 @@
-﻿using System.Windows.Input;
-
-public class AddDataCommand : ICommand
+﻿public class AddDataCommand : ICommand
 {
 	private readonly MainViewModel _viewModel;
 

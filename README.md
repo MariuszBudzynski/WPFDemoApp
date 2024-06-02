@@ -1,17 +1,23 @@
 # WPFDemoApp
 
-_Work in progress_
-_This description will change as modifications are made_
+I prepared this application to familiarize myself with WPF technology. The application is a simple to-do list program.
 
-Project: To-Do List
-Functionality:
+## Technologies used:
 
-1. Add tasks - DONE
-2. Edit tasks - DONE
-3. Delete tasks - DONE
-4. Mark tasks as completed - DONE
-5. Filter tasks (all, completed, incomplete) - DONE
-6. Search box - Done
-7. Prepare unit tests for selected functionality
-8. Configure logger - DONE
-9. Code Cleanup
+- WPF
+- C#
+- .NET
+- Dependency Injection
+- UNit Tests
+- Moq
+- SQL Server
+- LINQ
+- EF Core
+- Clean Architecture
+
+## How to Use
+
+1. Clone this repository.
+2. Configure the database connection in appsettings.json.
+3. Use "Update-Database" in the Package Manager Console to create the database.
+4. Run the app.

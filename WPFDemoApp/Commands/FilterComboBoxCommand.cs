@@ -1,7 +1,4 @@
-﻿using System.Windows.Controls;
-using System.Windows.Input;
-
-namespace WPFDemoApp.Commands
+﻿namespace WPFDemoApp.Commands
 {
 	public class FilterComboBoxCommand : ICommand
 	{

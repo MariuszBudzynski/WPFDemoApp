@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-
-namespace WPFDemoApp.Commands
+﻿namespace WPFDemoApp.Commands
 {
 	public class DeleteDataCommand : ICommand
 	{

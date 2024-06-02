@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows.Input;
-
-public class UpdateCheckboxCommand : ICommand
+﻿public class UpdateCheckboxCommand : ICommand
 {
 	private readonly MainViewModel _viewModel;
 
