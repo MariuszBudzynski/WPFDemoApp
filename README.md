@@ -19,5 +19,5 @@ I prepared this application to familiarize myself with WPF technology. The appli
 
 1. Clone this repository.
 2. Configure the database connection in appsettings.json.
-3. Use "Update-Database" in the Package Manager Console to create the database.
+3. Use Update-Database -Project WPFDemoApp.Core -StartupProject WPFDemoApp -Context ApplicationDbContext in the Package Manager Console to create the database.
 4. Run the app.
